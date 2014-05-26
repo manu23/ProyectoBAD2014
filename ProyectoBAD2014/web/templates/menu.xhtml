@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <head>
+        <title>Menú</title>
+    </head>
+    <body>
+        <ui:composition>           
+            <p:accordionPanel activeIndex="false"  style=" font-size: 18.5px " >
+                <p:tab title="Gestion Biblioteca">
+                    <h:form>
+                        <p:commandLink value="Busqueda Articulo"  ajax="false"/>
+                        <br/> <br/>
+                        <p:commandLink value="Prestamos" ajax="false"/>
+                        <br/> <br />
+                    </h:form>   
+                </p:tab>
+
+                <p:tab title="Gestion Socios" >
+                    <h:form>
+                        <p:commandLink value="Ingresar Socio"  ajax="false"/>
+                        <br/> <br/>
+                        <p:commandLink value="Buscar Socio"  ajax="false"/>
+                        <br/> <br/>
+                        <p:commandLink value="Editar Socio"  ajax="false"/>
+                        <br/> <br/>
+                        <p:commandLink value="Eliminar Socio"  ajax="false"/>
+                        <br/>
+                    </h:form>   
+                </p:tab>
+
+                <p:tab title="Mantenimientos" >
+                    <h:form> 
+                        <p:commandLink value="Usuarios"  ajax="false"/>
+                        <br/> <br/>
+                        <p:commandLink value="Configuracion"  ajax="false"/>
+                        <br/> <br/>
+                        <p:commandLink value="Perfiles"  ajax="false"/>
+                        <br/>                       
+                    </h:form>  
+                </p:tab>
+                
+                <p:tab title="Reportes" >
+                    <h:form>
+                        <p:commandLink value="Reporte de Socios" ajax="false"/>
+                        <br/> <br/>
+                        <p:commandLink value="Reporte de Prestamos"  ajax="false"/>
+                        <br/> <br/>
+                        <p:commandLink value="Reporte de Articulos"  ajax="false"/>
+                        <br/>
+                    </h:form> 
+
+                </p:tab>
+
+            </p:accordionPanel>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+/* 
+    Document   : icon
+    Created on : 19-ago-2012, 18:59:31
+    Author     : Antonio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.add{
+    background-image: url(../icons/add.png) !important;
+}
+
+.save{
+    background-image: url(../icons/save.png) !important;
+}

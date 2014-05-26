@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Sistema Bibliotecario</title>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="100"  >
+                <h:panelGrid columns="2">
+                    <p:graphicImage value="/resources/images/logoBiblioteca.jpg" style="display: block;  margin-left: 35%; margin-top: 3% "/>
+                    <h:outputText value="SISTEMA BIBLIOTECARIO BAD115"  style="display: block; text-align: center; font-size: 20px; font-weight: bold; color: black; margin-left: 450px" />
+                </h:panelGrid>
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
+                <h:form>
+                    <p:panel id="acceso" header="Acceso de Usuario"  style="position:absolute; margin-left:41.5%; margin-top:12%">
+                        <h:panelGrid columns="3">
+                            <h:outputLabel for="usuario" value="Usuario" />
+                            <p:inputText id="usuario" label="Usuario" required="true" value=""/>
+                            <p:message for="usuario" display="icon" showDetail="false"/>
+
+                            <h:outputLabel for="contrasena" value="Contraseña" />
+                            <p:password id="contrasena" label="Contrasena" required="true" value=""/>
+                            <p:message for="contrasena" display="icon" showDetail="false"/>
+                            
+                            <p:commandButton value="Ingresar" action="index" ajax="false"/> 
+                        </h:panelGrid>
+                        <div id="error">
+                            <p:messages showDetail="false"/>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </p:layoutUnit>
+            <p:layoutUnit id="footer" position="south" size="35">
+                <h:form>
+                    <h:outputText value="Copyright © 2014 | Sistema Bibliotecario BAD115 "  style="display: block; text-align: center;"/>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
+

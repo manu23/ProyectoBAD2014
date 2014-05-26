@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <head>
+        <title>Sistema Bibliotecario BAD115</title>
+    </head>
+    <body>
+        <ui:composition>
+
+            <p:layout >
+
+                <p:layoutUnit  id="logo"  position="west" size="210" >
+                    <ui:insert name="ruta_logo">
+                        <h:form>
+                            <p:commandLink action="/UI/home/home"  ajax="false">
+                                <p:graphicImage value="/resources/images/logoBiblioteca.jpg"/>
+                            </p:commandLink>
+                        </h:form>
+                    </ui:insert>
+                </p:layoutUnit>
+
+                <p:layoutUnit   id="encabezado" position="center" style="font-size: 16px; font-weight: bold; text-align: center">  
+                    <h:outputLabel value="SISTEMA BIBLIOTECARIO"/>
+                    <br />
+                    <h:outputLabel value="BAD115 2014"/>
+                    <br/> 
+                    <!--<h:outputText value="MANU_USUARIO" style="font-size: 14px;  margin-top: 5px"/>-->
+                </p:layoutUnit>
+
+                <p:layoutUnit id="iconos" position="south" size="30">
+                    <h:form id="formIcon">
+                        <p:commandLink value="SALIR" action="index" ajax="false" style="color: blue; float: right; margin-right: 10px" />
+                        <h:outputLabel value="manu_usuario" style="float: right; margin-right: 10px"/>       
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </ui:composition>
+    </body>
+</html>

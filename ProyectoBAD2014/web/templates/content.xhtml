@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+    </head>
+    <body>
+        <ui:composition>
+            <p:layout >
+
+                <p:layoutUnit  id="titulo_ui"  position="north" size="30" style="font-size: 14px; font-weight: bold">
+                    <ui:insert name="titulo">
+                        <h:outputText value="TITULO"/>
+                    </ui:insert>
+                </p:layoutUnit>
+
+                <p:layoutUnit   id="ui" position="center"   >  
+                    <ui:insert name="contenido_ui">                        
+                        <h:outputText value="UI"/>
+                    </ui:insert>
+                </p:layoutUnit>                
+
+            </p:layout>
+        </ui:composition>
+    </body>
+</html>
