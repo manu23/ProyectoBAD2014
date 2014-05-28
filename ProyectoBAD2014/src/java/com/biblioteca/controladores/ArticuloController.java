@@ -6,6 +6,7 @@ import com.biblioteca.entidades.Articulo;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 
 @ManagedBean
 @SessionScoped
@@ -17,8 +18,11 @@ public class ArticuloController {
     
     public ArticuloController() {
     }
-
+     
     public Articulo getArticulo() {
+        if(articulo == null){
+            articulo = new Articulo();
+        }
         return articulo;
     }
 
@@ -26,7 +30,7 @@ public class ArticuloController {
         this.articulo = articulo;
     }
     
-    public void insertarArt(Articulo articulo){
+    public void insertarArt(ActionEvent actionEvent){
         articuloDAO.ingresarArt(articulo);
     }
     

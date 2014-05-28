@@ -38,7 +38,7 @@
                         <h:inputText value="#{articuloController.articulo.idioma}"/>
                         </h:panelGrid>
                         <p:separator/>
-                        <p:commandButton value="Ingresar Articulo" action="#{articuloController.insertarArt(articulo)}"/>
+                        <p:commandButton value="Ingresar Articulo" actionListener="#{articuloController.insertarArt(actionEvent)}"/>
                     </h:form>                
             </ui:define> 
         </ui:composition>
