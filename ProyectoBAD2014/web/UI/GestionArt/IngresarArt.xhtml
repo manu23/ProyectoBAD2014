@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/commonLayout.xhtml">
+            <ui:define name="title">
+                SISTEMA BIBLIOTECARIO
+            </ui:define>
+            <ui:define name="titulo">
+                <h:outputText value="Ingresar Articulo" style="display: block; text-align: center"/>
+            </ui:define>
+            <ui:define name="contenido_ui">  
+                    <h:form>
+                        <h:panelGrid columns="2">
+                        <h:outputLabel value="Codigo"/>
+                        <h:inputText value="#{articuloController.articulo.codigo}"/>
+                        <h:outputLabel value="Autor"/>
+                        <h:inputText value="#{articuloController.articulo.autor}"/>
+                        <h:outputLabel value="Titulo"/>
+                        <h:inputText value="#{articuloController.articulo.titulo}"/>
+                        <h:outputLabel value="Descripcion"/>
+                        <h:inputTextarea rows="6" cols="10" value="#{articuloController.articulo.descripcionart}"/>
+                        <h:outputLabel value="Precio"/>
+                        <h:inputText value="#{articuloController.articulo.precio}"/>
+                        <h:outputLabel value="Es Donado"/>
+                        <p:selectOneRadio id="rbdonado" value="#{articuloController.articulo.donado}">
+                            <f:selectItem itemLabel="No" itemValue="0"/>
+                            <f:selectItem itemLabel="Si" itemValue="1"/>
+                        </p:selectOneRadio>
+                        <h:outputLabel value="Idioma"/>
+                        <h:inputText value="#{articuloController.articulo.idioma}"/>
+                        </h:panelGrid>
+                        <p:separator/>
+                        <p:commandButton value="Ingresar Articulo" action="#{articuloController.insertarArt(articulo)}"/>
+                    </h:form>                
+            </ui:define> 
+        </ui:composition>
+    </h:body>
+</html>
+
