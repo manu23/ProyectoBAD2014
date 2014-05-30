@@ -18,7 +18,7 @@
             </ui:define>
             <ui:define name="contenido_ui">  
                     <h:form>
-                        <h:panelGrid columns="2">
+                        <h:panelGrid columns="2" style="position: absolute; margin-left: 5%; margin-top: 2%">
                         <h:outputLabel value="Codigo"/>
                         <h:inputText value="#{articuloController.articulo.codigo}"/>
                         <h:outputLabel value="Autor"/>
@@ -36,9 +36,9 @@
                         </p:selectOneRadio>
                         <h:outputLabel value="Idioma"/>
                         <h:inputText value="#{articuloController.articulo.idioma}"/>
-                        </h:panelGrid>
-                        <p:separator/>
+                        <h:panelGroup/>
                         <p:commandButton value="Ingresar Articulo" actionListener="#{articuloController.insertarArt(actionEvent)}"/>
+                        </h:panelGrid>           
                     </h:form>                
             </ui:define> 
         </ui:composition>
