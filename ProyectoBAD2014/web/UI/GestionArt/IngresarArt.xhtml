@@ -16,8 +16,9 @@
             <ui:define name="titulo">
                 <h:outputText value="Ingresar Articulo" style="display: block; text-align: center"/>
             </ui:define>
-            <ui:define name="contenido_ui">  
-                    <h:form>
+            <ui:define name="contenido_ui">                    
+                    <h:form id="frmNuevoArt">
+                        <p:growl id="growl" showDetail="true" sticky="true"/>
                         <h:panelGrid columns="2" style="position: absolute; margin-left: 5%; margin-top: 2%">
                         <h:outputLabel value="Codigo"/>
                         <h:inputText value="#{articuloController.articulo.codigo}"/>
@@ -37,9 +38,9 @@
                         <h:outputLabel value="Idioma"/>
                         <h:inputText value="#{articuloController.articulo.idioma}"/>
                         <h:panelGroup/>
-                        <p:commandButton value="Ingresar Articulo" actionListener="#{articuloController.insertarArt(actionEvent)}"/>
-                        </h:panelGrid>           
-                    </h:form>                
+                        <p:commandButton value="Ingresar Articulo" actionListener="#{articuloController.insertarArt(actionEvent)}" update=":frmNuevoArt"/>
+                        </h:panelGrid>                       
+                    </h:form>                     
             </ui:define> 
         </ui:composition>
     </h:body>
