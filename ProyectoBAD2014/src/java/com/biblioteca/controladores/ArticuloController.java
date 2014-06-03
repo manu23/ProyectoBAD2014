@@ -19,6 +19,7 @@ public class ArticuloController {
     private ArticuloDAO articuloDAO;
     private Articulo articulo;
     private List<Articulo> articulos;
+    private Integer tipo = 0;
     
     public ArticuloController() {
     }
@@ -33,6 +34,16 @@ public class ArticuloController {
     public void setArticulo(Articulo articulo) {
         this.articulo = articulo;
     }
+
+    public Integer getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Integer tipo) {
+        this.tipo = tipo;
+    }
+    
+    
     
     /*
     * Metodo encargado de Ingresar de buscar 

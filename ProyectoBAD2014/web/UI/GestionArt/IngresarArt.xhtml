@@ -17,29 +17,114 @@
                 <h:outputText value="Ingresar Articulo" style="display: block; text-align: center"/>
             </ui:define>
             <ui:define name="contenido_ui">                    
-                    <h:form id="frmNuevoArt">
+                <h:form id="frmNuevoArt" style="margin-left: 5%; margin-top: 2%">
                         <p:growl id="growl" showDetail="true" sticky="true"/>
-                        <h:panelGrid columns="2" style="position: absolute; margin-left: 5%; margin-top: 2%">
-                        <h:outputLabel value="Codigo"/>
-                        <h:inputText value="#{articuloController.articulo.codigo}"/>
-                        <h:outputLabel value="Autor"/>
-                        <h:inputText value="#{articuloController.articulo.autor}"/>
-                        <h:outputLabel value="Titulo"/>
-                        <h:inputText value="#{articuloController.articulo.titulo}"/>
-                        <h:outputLabel value="Descripcion"/>
-                        <h:inputTextarea rows="6" cols="10" value="#{articuloController.articulo.descripcionart}"/>
-                        <h:outputLabel value="Precio"/>
-                        <h:inputText value="#{articuloController.articulo.precio}"/>
-                        <h:outputLabel value="Es Donado"/>
-                        <p:selectOneRadio id="rbdonado" value="#{articuloController.articulo.donado}">
-                            <f:selectItem itemLabel="No" itemValue="0"/>
-                            <f:selectItem itemLabel="Si" itemValue="1"/>
-                        </p:selectOneRadio>
-                        <h:outputLabel value="Idioma"/>
-                        <h:inputText value="#{articuloController.articulo.idioma}"/>
-                        <h:panelGroup/>
-                        <p:commandButton value="Ingresar Articulo" actionListener="#{articuloController.insertarArt(actionEvent)}" update=":frmNuevoArt"/>
-                        </h:panelGrid>                       
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Codigo"/>
+                            <h:inputText value="#{articuloController.articulo.codigo}"/>
+                            <h:outputLabel value="Autor"/>
+                            <h:inputText value="#{articuloController.articulo.autor}"/>
+                            <h:outputLabel value="Titulo"/>
+                            <h:inputText value="#{articuloController.articulo.titulo}"/>
+                            <h:outputLabel value="Descripcion"/>
+                            <h:inputTextarea rows="6" cols="14" value="#{articuloController.articulo.descripcionart}"/>
+                            <h:outputLabel value="Precio"/>
+                            <h:inputText value="#{articuloController.articulo.precio}"/>
+                            <h:outputLabel value="Es Donado"/>
+                            <p:selectOneRadio id="rbdonado" value="#{articuloController.articulo.donado}">
+                                <f:selectItem itemLabel="No" itemValue="0"/>
+                                <f:selectItem itemLabel="Si" itemValue="1"/>
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Idioma"/>
+                            <h:inputText value="#{articuloController.articulo.idioma}"/>                                             
+                       
+                            <h:outputLabel value="Categoria a Ingresar"/>
+                            <p:selectOneMenu id="categoria" value="#{articuloController.tipo}" required="true" requiredMessage="Debe Seleccionar una categoria.">
+                                <f:selectItem itemLabel=" " itemValue="0" />
+                                <f:selectItem itemLabel="Libros" itemValue="1" />
+                                <f:ajax render="libros" />
+                                <f:selectItem itemLabel="Revistas" itemValue="2" />
+                                <f:ajax render="revista" />
+                                <f:selectItem itemLabel="CD" itemValue="3" /> 
+                                <f:ajax render="cd" />
+                                <f:selectItem itemLabel="DVD" itemValue="4" />
+                                <f:ajax render="dvd" />
+                                <f:selectItem itemLabel="Tesis" itemValue="5" />
+                                <f:ajax render="tesis" />
+                                <f:selectItem itemLabel="Periodicos" itemValue="6" />
+                                <f:ajax render="periodicos" />
+                                <f:selectItem itemLabel="Obras de Referencia" itemValue="7" />
+                                <f:ajax render="obras" />
+                                <f:selectItem itemLabel="Memorias" itemValue="8" />
+                                <f:ajax render="memorias" />
+                            </p:selectOneMenu>                           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid columns="2" id="libros">
+                            <p:outputLabel value="Codigo ISBN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{articuloController.tipo == 1}"/> 
+                            <p:inputText  rendered="#{articuloController.tipo == 1}"/>
+                            <p:outputLabel value="Editorial" rendered="#{articuloController.tipo == 1}"/> 
+                            <p:inputText  rendered="#{articuloController.tipo == 1}"/>
+                            <p:outputLabel value="Año" rendered="#{articuloController.tipo == 1}"/> 
+                            <p:inputText  rendered="#{articuloController.tipo == 1}"/>
+                            <p:outputLabel value="Edicion" rendered="#{articuloController.tipo == 1}"/> 
+                            <p:inputText  rendered="#{articuloController.tipo == 1}"/>
+                        </h:panelGrid>
+                        
+                        <!-- Categoria Revistas -->
+                        <h:panelGrid columns="2" id="revista">
+                            <p:outputLabel value="Codigo ISSN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{articuloController.tipo == 2}"/> 
+                            <p:inputText  rendered="#{articuloController.tipo == 2}"/>
+                            <p:outputLabel value="Edicion de Revista" rendered="#{articuloController.tipo == 2}"/> 
+                            <p:inputText  rendered="#{articuloController.tipo == 2}"/>
+                            <p:outputLabel value="Tipo de Revista" rendered="#{articuloController.tipo == 2}"/> 
+                            <p:inputText  rendered="#{articuloController.tipo == 2}"/>
+                        </h:panelGrid> 
+                        
+                        <!-- Categoria Cd -->
+                        <h:panelGrid columns="2" id="cd">
+                            <p:outputLabel value="Numero de Pistas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{articuloController.tipo == 3}"/> 
+                            <p:inputText  rendered="#{articuloController.tipo == 3}"/>
+                            <p:outputLabel value="Genero" rendered="#{articuloController.tipo == 3}"/> 
+                            <p:inputText  rendered="#{articuloController.tipo == 3}"/>
+                        </h:panelGrid> 
+                        
+                        <!-- Categoria DVD -->
+                        <h:panelGrid columns="2" id="dvd">
+                            <p:outputLabel value="Duracion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{articuloController.tipo == 4}"/> 
+                            <p:calendar pattern="HH:mm"  timeOnly="true" rendered="#{articuloController.tipo == 4}"/>
+                        </h:panelGrid> 
+                        
+                        <!-- Categoria Tesis -->
+                        <h:panelGrid columns="2" id="tesis">
+                            <p:outputLabel value="Fecha de Elaboracion" rendered="#{articuloController.tipo == 5}"/> 
+                            <p:calendar locale="de" navigator="true" pattern="dd-MMM-yyyy"  rendered="#{articuloController.tipo == 5}"/>
+                            <p:outputLabel value="Area" rendered="#{articuloController.tipo == 5}"/> 
+                            <p:inputText  rendered="#{articuloController.tipo == 5}"/>
+                        </h:panelGrid> 
+                        
+                        <!-- Categoria Periodicos -->
+                        <h:panelGrid columns="2" id="periodicos">
+                            <p:outputLabel value="Fecha de Publicacion" rendered="#{articuloController.tipo == 6}"/> 
+                            <p:calendar locale="de" navigator="true" pattern="dd-MMM-yyyy"  rendered="#{articuloController.tipo == 6}"/>
+                        </h:panelGrid> 
+                        
+                        <!-- Categoria Obras -->
+                        <h:panelGrid columns="2" id="obras">
+                            <p:outputLabel value="Fecha de Creacion" rendered="#{articuloController.tipo == 7}"/> 
+                            <p:calendar locale="de" navigator="true" pattern="dd-MMM-yyyy"  rendered="#{articuloController.tipo == 7}"/>
+                            <p:outputLabel value="Region" rendered="#{articuloController.tipo == 7}"/> 
+                            <p:inputText  rendered="#{articuloController.tipo == 7}"/>
+                        </h:panelGrid>
+                        
+                        <!-- Categoria Memorias -->
+                        <h:panelGrid columns="2" id="memorias">                          
+                            <p:outputLabel value="Personaje&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{articuloController.tipo == 8}"/> 
+                            <p:inputText  rendered="#{articuloController.tipo == 8}"/>
+                        </h:panelGrid>
+                       
+                        <p:commandButton value="Ingresar Articulo" actionListener="#{articuloController.insertarArt(actionEvent)}" update=":frmNuevoArt"/>                        
+                         
                     </h:form>                     
             </ui:define> 
         </ui:composition>
