@@ -176,7 +176,7 @@ public class ArticuloController {
     */
     public void insertarArt(ActionEvent actionEvent){
         articuloDAO.ingresarArt(articulo);                
-        switch(tipo){
+        /*switch(tipo){
             case 1 : 
                 libro.setCodigo(articulo.getCodigo());
                 libro.setAutor(articulo.getAutor());
@@ -273,7 +273,7 @@ public class ArticuloController {
                 articuloDAO.ingresarMemorias(memorias);
                 memorias = new Memorias();
                 break;              
-        }
+        }*/
         FacesContext context = FacesContext.getCurrentInstance();       
         context.addMessage(null, new FacesMessage("Operacion Correcta",  "Articulo Ingresado con Exito") );
         articulo = new Articulo();

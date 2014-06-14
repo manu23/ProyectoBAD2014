@@ -11,10 +11,14 @@ import com.biblioteca.entidades.Obras;
 import com.biblioteca.entidades.Periodicos;
 import com.biblioteca.entidades.Revista;
 import com.biblioteca.entidades.Tesis;
+import java.math.BigInteger;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
+import javax.persistence.StoredProcedureQuery;
 
 
 @Stateless
@@ -25,12 +29,36 @@ public class ArticuloDAOImpl implements ArticuloDAO{
     
     
     /*
-    *Funciones de insercion de articulos y elemntos segun su categoria
+    *Funciones de insercion de articulos y elementos segun su categoria
     *
     */
     @Override
     public void ingresarArt(Articulo articulo) {
-        em.persist(articulo);        
+        //em.persist(articulo);
+       
+        StoredProcedureQuery spq = em.createStoredProcedureQuery("insertArt");
+        spq.registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(2, String.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(3, String.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(4, String.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(5, Double.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(6, BigInteger.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(7, BigInteger.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(8, String.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(9, Date.class, ParameterMode.IN);
+        
+        spq.setParameter(1, articulo.getCodigo());
+        spq.setParameter(2, articulo.getAutor());
+        spq.setParameter(3, articulo.getTitulo());
+        spq.setParameter(4, articulo.getDescripcionart());
+        spq.setParameter(5, articulo.getPrecio());
+        spq.setParameter(6, articulo.getDonado());
+        spq.setParameter(7, articulo.getEstado());
+        spq.setParameter(8, articulo.getIdioma());
+        spq.setParameter(9, articulo.getFechaadquisicion());
+        
+        spq.execute();
+       
     }
     
     @Override
