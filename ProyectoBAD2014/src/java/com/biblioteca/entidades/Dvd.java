@@ -14,7 +14,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -42,7 +41,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Dvd.findByDonado", query = "SELECT d FROM Dvd d WHERE d.donado = :donado"),
     @NamedQuery(name = "Dvd.findByEstado", query = "SELECT d FROM Dvd d WHERE d.estado = :estado"),
     @NamedQuery(name = "Dvd.findByIdioma", query = "SELECT d FROM Dvd d WHERE d.idioma = :idioma"),
-    @NamedQuery(name = "Dvd.findByDuracion", query = "SELECT d FROM Dvd d WHERE d.duracion = :duracion")})
+    @NamedQuery(name = "Dvd.findByDuracion", query = "SELECT d FROM Dvd d WHERE d.duracion = :duracion"),
+    @NamedQuery(name = "Dvd.findByFechaadquisicion", query = "SELECT d FROM Dvd d WHERE d.fechaadquisicion = :fechaadquisicion"),
+    @NamedQuery(name = "Dvd.findByTipoinfo", query = "SELECT d FROM Dvd d WHERE d.tipoinfo = :tipoinfo")})
 public class Dvd implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -57,9 +58,6 @@ public class Dvd implements Serializable {
     @Size(max = 30)
     @Column(name = "TITULO")
     private String titulo;
-    @Lob
-    @Column(name = "LOGO")
-    private Serializable logo;
     @Size(max = 50)
     @Column(name = "DESCRIPCIONART")
     private String descripcionart;
@@ -73,9 +71,15 @@ public class Dvd implements Serializable {
     @Size(max = 10)
     @Column(name = "IDIOMA")
     private String idioma;
+    @Size(max = 8)
     @Column(name = "DURACION")
+    private String duracion;
+    @Column(name = "FECHAADQUISICION")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date duracion;
+    private Date fechaadquisicion;
+    @Size(max = 20)
+    @Column(name = "TIPOINFO")
+    private String tipoinfo;
     @JoinColumn(name = "CODIGO", referencedColumnName = "CODIGO", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Articulo articulo;
@@ -109,14 +113,6 @@ public class Dvd implements Serializable {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public Serializable getLogo() {
-        return logo;
-    }
-
-    public void setLogo(Serializable logo) {
-        this.logo = logo;
     }
 
     public String getDescripcionart() {
@@ -159,12 +155,28 @@ public class Dvd implements Serializable {
         this.idioma = idioma;
     }
 
-    public Date getDuracion() {
+    public String getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(Date duracion) {
+    public void setDuracion(String duracion) {
         this.duracion = duracion;
+    }
+
+    public Date getFechaadquisicion() {
+        return fechaadquisicion;
+    }
+
+    public void setFechaadquisicion(Date fechaadquisicion) {
+        this.fechaadquisicion = fechaadquisicion;
+    }
+
+    public String getTipoinfo() {
+        return tipoinfo;
+    }
+
+    public void setTipoinfo(String tipoinfo) {
+        this.tipoinfo = tipoinfo;
     }
 
     public Articulo getArticulo() {

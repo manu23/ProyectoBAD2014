@@ -14,7 +14,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -43,7 +42,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Obras.findByEstado", query = "SELECT o FROM Obras o WHERE o.estado = :estado"),
     @NamedQuery(name = "Obras.findByIdioma", query = "SELECT o FROM Obras o WHERE o.idioma = :idioma"),
     @NamedQuery(name = "Obras.findByFechacreacion", query = "SELECT o FROM Obras o WHERE o.fechacreacion = :fechacreacion"),
-    @NamedQuery(name = "Obras.findByRegion", query = "SELECT o FROM Obras o WHERE o.region = :region")})
+    @NamedQuery(name = "Obras.findByFechaadquisicion", query = "SELECT o FROM Obras o WHERE o.fechaadquisicion = :fechaadquisicion"),
+    @NamedQuery(name = "Obras.findByTipoobra", query = "SELECT o FROM Obras o WHERE o.tipoobra = :tipoobra")})
 public class Obras implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -58,9 +58,6 @@ public class Obras implements Serializable {
     @Size(max = 30)
     @Column(name = "TITULO")
     private String titulo;
-    @Lob
-    @Column(name = "LOGO")
-    private Serializable logo;
     @Size(max = 50)
     @Column(name = "DESCRIPCIONART")
     private String descripcionart;
@@ -77,9 +74,12 @@ public class Obras implements Serializable {
     @Column(name = "FECHACREACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechacreacion;
+    @Column(name = "FECHAADQUISICION")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaadquisicion;
     @Size(max = 30)
-    @Column(name = "REGION")
-    private String region;
+    @Column(name = "TIPOOBRA")
+    private String tipoobra;
     @JoinColumn(name = "CODIGO", referencedColumnName = "CODIGO", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Articulo articulo;
@@ -113,14 +113,6 @@ public class Obras implements Serializable {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public Serializable getLogo() {
-        return logo;
-    }
-
-    public void setLogo(Serializable logo) {
-        this.logo = logo;
     }
 
     public String getDescripcionart() {
@@ -171,12 +163,20 @@ public class Obras implements Serializable {
         this.fechacreacion = fechacreacion;
     }
 
-    public String getRegion() {
-        return region;
+    public Date getFechaadquisicion() {
+        return fechaadquisicion;
     }
 
-    public void setRegion(String region) {
-        this.region = region;
+    public void setFechaadquisicion(Date fechaadquisicion) {
+        this.fechaadquisicion = fechaadquisicion;
+    }
+
+    public String getTipoobra() {
+        return tipoobra;
+    }
+
+    public void setTipoobra(String tipoobra) {
+        this.tipoobra = tipoobra;
     }
 
     public Articulo getArticulo() {

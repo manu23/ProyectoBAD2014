@@ -8,16 +8,18 @@ package com.biblioteca.entidades;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -39,7 +41,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Memorias.findByDonado", query = "SELECT m FROM Memorias m WHERE m.donado = :donado"),
     @NamedQuery(name = "Memorias.findByEstado", query = "SELECT m FROM Memorias m WHERE m.estado = :estado"),
     @NamedQuery(name = "Memorias.findByIdioma", query = "SELECT m FROM Memorias m WHERE m.idioma = :idioma"),
-    @NamedQuery(name = "Memorias.findByPersonaje", query = "SELECT m FROM Memorias m WHERE m.personaje = :personaje")})
+    @NamedQuery(name = "Memorias.findByPersonaje", query = "SELECT m FROM Memorias m WHERE m.personaje = :personaje"),
+    @NamedQuery(name = "Memorias.findByFechaadquisicion", query = "SELECT m FROM Memorias m WHERE m.fechaadquisicion = :fechaadquisicion"),
+    @NamedQuery(name = "Memorias.findByFecreacion", query = "SELECT m FROM Memorias m WHERE m.fecreacion = :fecreacion")})
 public class Memorias implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -54,9 +58,6 @@ public class Memorias implements Serializable {
     @Size(max = 30)
     @Column(name = "TITULO")
     private String titulo;
-    @Lob
-    @Column(name = "LOGO")
-    private Serializable logo;
     @Size(max = 50)
     @Column(name = "DESCRIPCIONART")
     private String descripcionart;
@@ -73,6 +74,12 @@ public class Memorias implements Serializable {
     @Size(max = 30)
     @Column(name = "PERSONAJE")
     private String personaje;
+    @Column(name = "FECHAADQUISICION")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaadquisicion;
+    @Column(name = "FECREACION")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecreacion;
     @JoinColumn(name = "CODIGO", referencedColumnName = "CODIGO", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Articulo articulo;
@@ -106,14 +113,6 @@ public class Memorias implements Serializable {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public Serializable getLogo() {
-        return logo;
-    }
-
-    public void setLogo(Serializable logo) {
-        this.logo = logo;
     }
 
     public String getDescripcionart() {
@@ -162,6 +161,22 @@ public class Memorias implements Serializable {
 
     public void setPersonaje(String personaje) {
         this.personaje = personaje;
+    }
+
+    public Date getFechaadquisicion() {
+        return fechaadquisicion;
+    }
+
+    public void setFechaadquisicion(Date fechaadquisicion) {
+        this.fechaadquisicion = fechaadquisicion;
+    }
+
+    public Date getFecreacion() {
+        return fecreacion;
+    }
+
+    public void setFecreacion(Date fecreacion) {
+        this.fecreacion = fecreacion;
     }
 
     public Articulo getArticulo() {

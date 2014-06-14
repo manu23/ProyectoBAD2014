@@ -14,7 +14,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -43,7 +42,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Tesis.findByEstado", query = "SELECT t FROM Tesis t WHERE t.estado = :estado"),
     @NamedQuery(name = "Tesis.findByIdioma", query = "SELECT t FROM Tesis t WHERE t.idioma = :idioma"),
     @NamedQuery(name = "Tesis.findByFechaelaboracion", query = "SELECT t FROM Tesis t WHERE t.fechaelaboracion = :fechaelaboracion"),
-    @NamedQuery(name = "Tesis.findByArea", query = "SELECT t FROM Tesis t WHERE t.area = :area")})
+    @NamedQuery(name = "Tesis.findByCarrera", query = "SELECT t FROM Tesis t WHERE t.carrera = :carrera"),
+    @NamedQuery(name = "Tesis.findByFechaadquisicion", query = "SELECT t FROM Tesis t WHERE t.fechaadquisicion = :fechaadquisicion"),
+    @NamedQuery(name = "Tesis.findByUniversidad", query = "SELECT t FROM Tesis t WHERE t.universidad = :universidad"),
+    @NamedQuery(name = "Tesis.findByNumpaginas", query = "SELECT t FROM Tesis t WHERE t.numpaginas = :numpaginas")})
 public class Tesis implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -58,9 +60,6 @@ public class Tesis implements Serializable {
     @Size(max = 30)
     @Column(name = "TITULO")
     private String titulo;
-    @Lob
-    @Column(name = "LOGO")
-    private Serializable logo;
     @Size(max = 50)
     @Column(name = "DESCRIPCIONART")
     private String descripcionart;
@@ -78,8 +77,16 @@ public class Tesis implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaelaboracion;
     @Size(max = 30)
-    @Column(name = "AREA")
-    private String area;
+    @Column(name = "CARRERA")
+    private String carrera;
+    @Column(name = "FECHAADQUISICION")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaadquisicion;
+    @Size(max = 40)
+    @Column(name = "UNIVERSIDAD")
+    private String universidad;
+    @Column(name = "NUMPAGINAS")
+    private BigInteger numpaginas;
     @JoinColumn(name = "CODIGO", referencedColumnName = "CODIGO", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Articulo articulo;
@@ -113,14 +120,6 @@ public class Tesis implements Serializable {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public Serializable getLogo() {
-        return logo;
-    }
-
-    public void setLogo(Serializable logo) {
-        this.logo = logo;
     }
 
     public String getDescripcionart() {
@@ -171,12 +170,36 @@ public class Tesis implements Serializable {
         this.fechaelaboracion = fechaelaboracion;
     }
 
-    public String getArea() {
-        return area;
+    public String getCarrera() {
+        return carrera;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
+    public Date getFechaadquisicion() {
+        return fechaadquisicion;
+    }
+
+    public void setFechaadquisicion(Date fechaadquisicion) {
+        this.fechaadquisicion = fechaadquisicion;
+    }
+
+    public String getUniversidad() {
+        return universidad;
+    }
+
+    public void setUniversidad(String universidad) {
+        this.universidad = universidad;
+    }
+
+    public BigInteger getNumpaginas() {
+        return numpaginas;
+    }
+
+    public void setNumpaginas(BigInteger numpaginas) {
+        this.numpaginas = numpaginas;
     }
 
     public Articulo getArticulo() {

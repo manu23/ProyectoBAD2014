@@ -14,7 +14,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -45,7 +44,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Libro.findByCodigoisbn", query = "SELECT l FROM Libro l WHERE l.codigoisbn = :codigoisbn"),
     @NamedQuery(name = "Libro.findByEditorial", query = "SELECT l FROM Libro l WHERE l.editorial = :editorial"),
     @NamedQuery(name = "Libro.findByAno", query = "SELECT l FROM Libro l WHERE l.ano = :ano"),
-    @NamedQuery(name = "Libro.findByEdicion", query = "SELECT l FROM Libro l WHERE l.edicion = :edicion")})
+    @NamedQuery(name = "Libro.findByEdicion", query = "SELECT l FROM Libro l WHERE l.edicion = :edicion"),
+    @NamedQuery(name = "Libro.findByFechaadquisicion", query = "SELECT l FROM Libro l WHERE l.fechaadquisicion = :fechaadquisicion")})
 public class Libro implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -60,9 +60,6 @@ public class Libro implements Serializable {
     @Size(max = 30)
     @Column(name = "TITULO")
     private String titulo;
-    @Lob
-    @Column(name = "LOGO")
-    private Serializable logo;
     @Size(max = 50)
     @Column(name = "DESCRIPCIONART")
     private String descripcionart;
@@ -82,12 +79,15 @@ public class Libro implements Serializable {
     @Size(max = 30)
     @Column(name = "EDITORIAL")
     private String editorial;
+    @Size(max = 4)
     @Column(name = "ANO")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date ano;
+    private String ano;
     @Size(max = 10)
     @Column(name = "EDICION")
     private String edicion;
+    @Column(name = "FECHAADQUISICION")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaadquisicion;
     @JoinColumn(name = "CODIGO", referencedColumnName = "CODIGO", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Articulo articulo;
@@ -121,14 +121,6 @@ public class Libro implements Serializable {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public Serializable getLogo() {
-        return logo;
-    }
-
-    public void setLogo(Serializable logo) {
-        this.logo = logo;
     }
 
     public String getDescripcionart() {
@@ -187,11 +179,11 @@ public class Libro implements Serializable {
         this.editorial = editorial;
     }
 
-    public Date getAno() {
+    public String getAno() {
         return ano;
     }
 
-    public void setAno(Date ano) {
+    public void setAno(String ano) {
         this.ano = ano;
     }
 
@@ -201,6 +193,14 @@ public class Libro implements Serializable {
 
     public void setEdicion(String edicion) {
         this.edicion = edicion;
+    }
+
+    public Date getFechaadquisicion() {
+        return fechaadquisicion;
+    }
+
+    public void setFechaadquisicion(Date fechaadquisicion) {
+        this.fechaadquisicion = fechaadquisicion;
     }
 
     public Articulo getArticulo() {

@@ -8,16 +8,18 @@ package com.biblioteca.entidades;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -41,7 +43,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Revista.findByIdioma", query = "SELECT r FROM Revista r WHERE r.idioma = :idioma"),
     @NamedQuery(name = "Revista.findByCodigoissn", query = "SELECT r FROM Revista r WHERE r.codigoissn = :codigoissn"),
     @NamedQuery(name = "Revista.findByEdicionrev", query = "SELECT r FROM Revista r WHERE r.edicionrev = :edicionrev"),
-    @NamedQuery(name = "Revista.findByTiporev", query = "SELECT r FROM Revista r WHERE r.tiporev = :tiporev")})
+    @NamedQuery(name = "Revista.findByTiporev", query = "SELECT r FROM Revista r WHERE r.tiporev = :tiporev"),
+    @NamedQuery(name = "Revista.findByFechaadquisicion", query = "SELECT r FROM Revista r WHERE r.fechaadquisicion = :fechaadquisicion"),
+    @NamedQuery(name = "Revista.findByFecpublicacion", query = "SELECT r FROM Revista r WHERE r.fecpublicacion = :fecpublicacion")})
 public class Revista implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -56,9 +60,6 @@ public class Revista implements Serializable {
     @Size(max = 30)
     @Column(name = "TITULO")
     private String titulo;
-    @Lob
-    @Column(name = "LOGO")
-    private Serializable logo;
     @Size(max = 50)
     @Column(name = "DESCRIPCIONART")
     private String descripcionart;
@@ -81,6 +82,12 @@ public class Revista implements Serializable {
     @Size(max = 10)
     @Column(name = "TIPOREV")
     private String tiporev;
+    @Column(name = "FECHAADQUISICION")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaadquisicion;
+    @Column(name = "FECPUBLICACION")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecpublicacion;
     @JoinColumn(name = "CODIGO", referencedColumnName = "CODIGO", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Articulo articulo;
@@ -114,14 +121,6 @@ public class Revista implements Serializable {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public Serializable getLogo() {
-        return logo;
-    }
-
-    public void setLogo(Serializable logo) {
-        this.logo = logo;
     }
 
     public String getDescripcionart() {
@@ -186,6 +185,22 @@ public class Revista implements Serializable {
 
     public void setTiporev(String tiporev) {
         this.tiporev = tiporev;
+    }
+
+    public Date getFechaadquisicion() {
+        return fechaadquisicion;
+    }
+
+    public void setFechaadquisicion(Date fechaadquisicion) {
+        this.fechaadquisicion = fechaadquisicion;
+    }
+
+    public Date getFecpublicacion() {
+        return fecpublicacion;
+    }
+
+    public void setFecpublicacion(Date fecpublicacion) {
+        this.fecpublicacion = fecpublicacion;
     }
 
     public Articulo getArticulo() {

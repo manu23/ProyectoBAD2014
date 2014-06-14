@@ -14,7 +14,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -42,7 +41,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Periodicos.findByDonado", query = "SELECT p FROM Periodicos p WHERE p.donado = :donado"),
     @NamedQuery(name = "Periodicos.findByEstado", query = "SELECT p FROM Periodicos p WHERE p.estado = :estado"),
     @NamedQuery(name = "Periodicos.findByIdioma", query = "SELECT p FROM Periodicos p WHERE p.idioma = :idioma"),
-    @NamedQuery(name = "Periodicos.findByFechapublicacion", query = "SELECT p FROM Periodicos p WHERE p.fechapublicacion = :fechapublicacion")})
+    @NamedQuery(name = "Periodicos.findByFechapublicacion", query = "SELECT p FROM Periodicos p WHERE p.fechapublicacion = :fechapublicacion"),
+    @NamedQuery(name = "Periodicos.findByFechaadquisicion", query = "SELECT p FROM Periodicos p WHERE p.fechaadquisicion = :fechaadquisicion"),
+    @NamedQuery(name = "Periodicos.findByPaispublicacion", query = "SELECT p FROM Periodicos p WHERE p.paispublicacion = :paispublicacion")})
 public class Periodicos implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -57,9 +58,6 @@ public class Periodicos implements Serializable {
     @Size(max = 30)
     @Column(name = "TITULO")
     private String titulo;
-    @Lob
-    @Column(name = "LOGO")
-    private Serializable logo;
     @Size(max = 50)
     @Column(name = "DESCRIPCIONART")
     private String descripcionart;
@@ -76,6 +74,12 @@ public class Periodicos implements Serializable {
     @Column(name = "FECHAPUBLICACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechapublicacion;
+    @Column(name = "FECHAADQUISICION")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaadquisicion;
+    @Size(max = 30)
+    @Column(name = "PAISPUBLICACION")
+    private String paispublicacion;
     @JoinColumn(name = "CODIGO", referencedColumnName = "CODIGO", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Articulo articulo;
@@ -109,14 +113,6 @@ public class Periodicos implements Serializable {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public Serializable getLogo() {
-        return logo;
-    }
-
-    public void setLogo(Serializable logo) {
-        this.logo = logo;
     }
 
     public String getDescripcionart() {
@@ -165,6 +161,22 @@ public class Periodicos implements Serializable {
 
     public void setFechapublicacion(Date fechapublicacion) {
         this.fechapublicacion = fechapublicacion;
+    }
+
+    public Date getFechaadquisicion() {
+        return fechaadquisicion;
+    }
+
+    public void setFechaadquisicion(Date fechaadquisicion) {
+        this.fechaadquisicion = fechaadquisicion;
+    }
+
+    public String getPaispublicacion() {
+        return paispublicacion;
+    }
+
+    public void setPaispublicacion(String paispublicacion) {
+        this.paispublicacion = paispublicacion;
     }
 
     public Articulo getArticulo() {

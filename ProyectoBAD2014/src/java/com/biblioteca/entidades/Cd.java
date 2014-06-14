@@ -8,16 +8,18 @@ package com.biblioteca.entidades;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -40,7 +42,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Cd.findByEstado", query = "SELECT c FROM Cd c WHERE c.estado = :estado"),
     @NamedQuery(name = "Cd.findByIdioma", query = "SELECT c FROM Cd c WHERE c.idioma = :idioma"),
     @NamedQuery(name = "Cd.findByNumpista", query = "SELECT c FROM Cd c WHERE c.numpista = :numpista"),
-    @NamedQuery(name = "Cd.findByGenreo", query = "SELECT c FROM Cd c WHERE c.genreo = :genreo")})
+    @NamedQuery(name = "Cd.findByGenero", query = "SELECT c FROM Cd c WHERE c.genero = :genero"),
+    @NamedQuery(name = "Cd.findByFechaadquisicion", query = "SELECT c FROM Cd c WHERE c.fechaadquisicion = :fechaadquisicion")})
 public class Cd implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -55,9 +58,6 @@ public class Cd implements Serializable {
     @Size(max = 30)
     @Column(name = "TITULO")
     private String titulo;
-    @Lob
-    @Column(name = "LOGO")
-    private Serializable logo;
     @Size(max = 50)
     @Column(name = "DESCRIPCIONART")
     private String descripcionart;
@@ -74,8 +74,11 @@ public class Cd implements Serializable {
     @Column(name = "NUMPISTA")
     private BigInteger numpista;
     @Size(max = 15)
-    @Column(name = "GENREO")
-    private String genreo;
+    @Column(name = "GENERO")
+    private String genero;
+    @Column(name = "FECHAADQUISICION")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaadquisicion;
     @JoinColumn(name = "CODIGO", referencedColumnName = "CODIGO", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Articulo articulo;
@@ -109,14 +112,6 @@ public class Cd implements Serializable {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public Serializable getLogo() {
-        return logo;
-    }
-
-    public void setLogo(Serializable logo) {
-        this.logo = logo;
     }
 
     public String getDescripcionart() {
@@ -167,12 +162,20 @@ public class Cd implements Serializable {
         this.numpista = numpista;
     }
 
-    public String getGenreo() {
-        return genreo;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setGenreo(String genreo) {
-        this.genreo = genreo;
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public Date getFechaadquisicion() {
+        return fechaadquisicion;
+    }
+
+    public void setFechaadquisicion(Date fechaadquisicion) {
+        this.fechaadquisicion = fechaadquisicion;
     }
 
     public Articulo getArticulo() {
