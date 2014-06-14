@@ -63,7 +63,38 @@ public class ArticuloDAOImpl implements ArticuloDAO{
     
     @Override
     public void ingresarLib(Libro libro) {
-       em.persist(libro);
+       //em.persist(libro);
+        
+        StoredProcedureQuery spq = em.createStoredProcedureQuery("insertlib");
+        spq.registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(2, String.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(3, String.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(4, String.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(5, Double.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(6, BigInteger.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(7, BigInteger.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(8, String.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(9, String.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(10, String.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(11, String.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(12, String.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(13, Date.class, ParameterMode.IN);
+        
+        spq.setParameter(1, libro.getCodigo());
+        spq.setParameter(2, libro.getAutor());
+        spq.setParameter(3, libro.getTitulo());
+        spq.setParameter(4, libro.getDescripcionart());
+        spq.setParameter(5, libro.getPrecio());
+        spq.setParameter(6, libro.getDonado());
+        spq.setParameter(7, libro.getEstado());
+        spq.setParameter(8, libro.getIdioma());
+        spq.setParameter(9, libro.getCodigoisbn());
+        spq.setParameter(10, libro.getEditorial());
+        spq.setParameter(11, libro.getAno());
+        spq.setParameter(12, libro.getEdicion());
+        spq.setParameter(13, libro.getFechaadquisicion());
+        
+        spq.execute();
     }
 
     @Override
