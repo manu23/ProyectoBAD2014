@@ -19,14 +19,14 @@
                     <p:panel id="acceso" header="Acceso de Usuario"  style="position:absolute; margin-left:41.5%; margin-top:12%">
                         <h:panelGrid columns="3">
                             <h:outputLabel for="usuario" value="Usuario" />
-                            <p:inputText id="usuario" label="Usuario" required="true" value=""/>
+                            <p:inputText id="usuario" value="#{loginController.usuario.idusuario}" label="Usuario" required="true"/>
                             <p:message for="usuario" display="icon" showDetail="false"/>
 
                             <h:outputLabel for="contrasena" value="Contraseña" />
-                            <p:password id="contrasena" label="Contrasena" required="true" value=""/>
+                            <p:password id="contrasena" value="#{loginController.usuario.pass}" label="Contrasena" required="true" />
                             <p:message for="contrasena" display="icon" showDetail="false"/>
                             
-                            <p:commandButton value="Ingresar" action="index" ajax="false"/> 
+                            <p:commandButton value="Ingresar" action="#{loginController.loginAcceso}" ajax="false"/> 
                         </h:panelGrid>
                         <div id="error">
                             <p:messages showDetail="false"/>
