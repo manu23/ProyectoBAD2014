@@ -26,4 +26,12 @@ public interface ArticuloDAO {
     public void ingresarObras(Obras obras);
     public void ingresarMemorias(Memorias memorias);
     public List<Articulo> buscarTodos();
+    public List<Libro> buscarTodosLib();
+    public List<Revista> buscarTodosRev();
+    public List<Cd> buscarTodosCd();
+    public List<Dvd> buscarTodosDvd();
+    public List<Tesis> buscarTodostesis();
+    public List<Periodicos> buscarTodosPer();
+    public List<Obras> buscarTodosObras();
+    public List<Memorias> buscarTodosMem();
 }

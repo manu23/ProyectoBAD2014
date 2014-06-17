@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/commonLayout.xhtml">
+            <ui:define name="title">
+                SISTEMA BIBLIOTECARIO
+            </ui:define>
+            <ui:define name="titulo">
+                <h:outputText value="Lista de Libros" style="display: block; text-align: center"/>
+            </ui:define>
+            <ui:define name="contenido_ui">  
+                <h:form id="articulos">
+                    <p:dataTable var="libro" value="#{articuloController.libros}" emptyMessage="No hay libros disponibles"
+                                 paginator="true" rows="10" paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <p:column headerText="Codigo">  
+                            <h:outputText value="#{libro.codigo}"/>  
+                        </p:column>
+                        <p:column headerText="Autor" filterBy="#{libro.autor}">  
+                            <h:outputText value="#{libro.autor}"/>  
+                        </p:column>
+                        <p:column headerText="Titulo"  filterBy="#{libro.titulo}">  
+                            <h:outputText value="#{libro.titulo}"/>  
+                        </p:column> 
+                        <p:column headerText="Precio">  
+                            <h:outputText value="#{libro.precio}"/>  
+                        </p:column> 
+                        <p:column headerText="Idioma" filterBy="#{libro.idioma}">  
+                            <h:outputText value="#{libro.idioma}"/>  
+                        </p:column>
+                        <p:column headerText="ISBN" filterBy="#{libro.codigoisbn}">  
+                            <h:outputText value="#{libro.codigoisbn}"/>  
+                        </p:column>
+                        <p:column headerText="Año" filterBy="#{libro.ano}">  
+                            <h:outputText value="#{libro.ano}"/>  
+                        </p:column>
+                        <p:column headerText="Editorial" filterBy="#{libro.editorial}">  
+                            <h:outputText value="#{libro.editorial}"/>  
+                        </p:column>
+                        <p:column headerText="Edicion" filterBy="#{libro.edicion}">  
+                            <h:outputText value="#{libro.edicion}"/>  
+                        </p:column>
+                        <p:column style="width:8%; text-align:center">  
+                            <p:commandButton  icon="ui-icon-pencil" title="Editar"/>
+                            <p:commandButton  icon="ui-icon-closethick" title="Eliminar"/>
+                        </p:column>            
+                    </p:dataTable>
+                </h:form>           
+            </ui:define> 
+        </ui:composition>
+    </h:body>
+</html>
+

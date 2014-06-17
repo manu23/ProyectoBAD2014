@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/commonLayout.xhtml">
+            <ui:define name="title">
+                SISTEMA BIBLIOTECARIO
+            </ui:define>
+            <ui:define name="titulo">
+                <h:outputText value="Lista de Revistas" style="display: block; text-align: center"/>
+            </ui:define>
+            <ui:define name="contenido_ui">  
+                <h:form id="articulos">
+                    <p:dataTable var="revista" value="#{articuloController.revistas}" emptyMessage="No hay revistas disponibles"
+                                 paginator="true" rows="10" paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <p:column headerText="Codigo">  
+                            <h:outputText value="#{revista.codigo}"/>  
+                        </p:column>
+                        <p:column headerText="Autor" filterBy="#{revista.autor}">  
+                            <h:outputText value="#{revista.autor}"/>  
+                        </p:column>
+                        <p:column headerText="Titulo"  filterBy="#{revista.titulo}">  
+                            <h:outputText value="#{revista.titulo}"/>  
+                        </p:column> 
+                        <p:column headerText="Precio">  
+                            <h:outputText value="#{revista.precio}"/>  
+                        </p:column> 
+                        <p:column headerText="Idioma" filterBy="#{revista.idioma}">  
+                            <h:outputText value="#{revista.idioma}"/>  
+                        </p:column>
+                        <p:column headerText="ISSN" filterBy="#{revista.codigoissn}">  
+                            <h:outputText value="#{revista.codigoissn}"/>  
+                        </p:column>
+                        <p:column headerText="Edicion" filterBy="#{revista.edicionrev}">  
+                            <h:outputText value="#{revista.edicionrev}" />  
+                        </p:column>
+                        <p:column headerText="Tipo" filterBy="#{revista.tiporev}">  
+                            <h:outputText value="#{revista.tiporev}"/>  
+                        </p:column>
+                        <p:column headerText="Fecha Publicacion" filterBy="#{revista.fecpublicacion}">  
+                            <h:outputText value="#{revista.fecpublicacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy"/>
+                            </h:outputText>  
+                        </p:column>
+                        <p:column style="width:8%; text-align:center">  
+                            <p:commandButton  icon="ui-icon-pencil" title="Editar"/>
+                            <p:commandButton  icon="ui-icon-closethick" title="Eliminar"/>
+                        </p:column>            
+                    </p:dataTable>
+                </h:form>           
+            </ui:define> 
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -38,6 +38,14 @@ public class ArticuloController {
     private Memorias memorias;
     
     private List<Articulo> articulos;
+    private List<Libro> libros;
+    private List<Revista> revistas;
+    private List<Cd> cds;  
+    private List<Dvd> dvds;
+    private List<Tesis> tesiss;
+    private List<Periodicos> periodicoss;
+    private List<Obras> obrass;
+    private List<Memorias> memoriass;
     private Integer tipo = 0;
     
     public ArticuloController() {
@@ -168,6 +176,48 @@ public class ArticuloController {
         articulos = articuloDAO.buscarTodos();
         return articulos;
     }
+
+    public List<Libro> getLibros() {
+        libros = articuloDAO.buscarTodosLib();
+        return libros;
+    }
+
+    public List<Revista> getRevistas() {
+        revistas = articuloDAO.buscarTodosRev();
+        return revistas;
+    }
+
+    public List<Cd> getCds() {
+        cds = articuloDAO.buscarTodosCd();
+        return cds;
+    }
+
+    public List<Dvd> getDvds() {
+        dvds = articuloDAO.buscarTodosDvd();
+        return dvds;
+    }
+
+    public List<Tesis> getTesiss() {
+        tesiss = articuloDAO.buscarTodostesis();
+        return tesiss;
+    }
+
+    public List<Periodicos> getPeriodicoss() {
+        periodicoss = articuloDAO.buscarTodosPer();
+        return periodicoss;
+    }
+
+    public List<Obras> getObrass() {
+        obrass = articuloDAO.buscarTodosObras();
+        return obrass;
+    }
+
+    public List<Memorias> getMemoriass() {
+        memoriass = articuloDAO.buscarTodosMem();
+        return memoriass;
+    }
+    
+    
     
     /*
     * Metodo encargado de Ingresar un nuevo articulo 
@@ -186,6 +236,7 @@ public class ArticuloController {
                 libro.setDonado(articulo.getDonado());
                 libro.setEstado(articulo.getEstado());
                 libro.setIdioma(articulo.getIdioma());
+                libro.setFechaadquisicion(articulo.getFechaadquisicion());
                 articuloDAO.ingresarLib(libro);
                 libro = new Libro();
                 break;
@@ -198,6 +249,7 @@ public class ArticuloController {
                 revista.setDonado(articulo.getDonado());
                 revista.setEstado(articulo.getEstado());
                 revista.setIdioma(articulo.getIdioma());
+                revista.setFechaadquisicion(articulo.getFechaadquisicion());
                 articuloDAO.ingresarRev(revista);
                 revista = new Revista();
                 break;
@@ -210,6 +262,7 @@ public class ArticuloController {
                 cd.setDonado(articulo.getDonado());
                 cd.setEstado(articulo.getEstado());
                 cd.setIdioma(articulo.getIdioma());
+                cd.setFechaadquisicion(articulo.getFechaadquisicion());
                 articuloDAO.ingresarCd(cd);
                 cd = new Cd();
                 break;
@@ -222,6 +275,7 @@ public class ArticuloController {
                 dvd.setDonado(articulo.getDonado());
                 dvd.setEstado(articulo.getEstado());
                 dvd.setIdioma(articulo.getIdioma());
+                dvd.setFechaadquisicion(articulo.getFechaadquisicion());
                 articuloDAO.ingresarDvd(dvd);
                 dvd = new Dvd();
                 break;
@@ -234,6 +288,7 @@ public class ArticuloController {
                 tesis.setDonado(articulo.getDonado());
                 tesis.setEstado(articulo.getEstado());
                 tesis.setIdioma(articulo.getIdioma());
+                tesis.setFechaadquisicion(articulo.getFechaadquisicion());
                 articuloDAO.ingresarTesis(tesis);
                 tesis = new Tesis();
                 break;
@@ -246,6 +301,7 @@ public class ArticuloController {
                 periodicos.setDonado(articulo.getDonado());
                 periodicos.setEstado(articulo.getEstado());
                 periodicos.setIdioma(articulo.getIdioma());
+                periodicos.setFechaadquisicion(articulo.getFechaadquisicion());
                 articuloDAO.ingresarPeriodicos(periodicos);
                 periodicos = new Periodicos();
                 break;
@@ -258,6 +314,7 @@ public class ArticuloController {
                 obras.setDonado(articulo.getDonado());
                 obras.setEstado(articulo.getEstado());
                 obras.setIdioma(articulo.getIdioma());
+                obras.setFechaadquisicion(articulo.getFechaadquisicion());
                 articuloDAO.ingresarObras(obras);
                 obras = new Obras();
                 break;
@@ -270,6 +327,7 @@ public class ArticuloController {
                 memorias.setDonado(articulo.getDonado());
                 memorias.setEstado(articulo.getEstado());
                 memorias.setIdioma(articulo.getIdioma());
+                memorias.setFechaadquisicion(articulo.getFechaadquisicion());
                 articuloDAO.ingresarMemorias(memorias);
                 memorias = new Memorias();
                 break;              

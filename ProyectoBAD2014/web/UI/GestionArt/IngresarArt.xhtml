@@ -36,7 +36,9 @@
                                 <f:selectItem itemLabel="Si" itemValue="1"/>
                             </p:selectOneRadio>
                             <h:outputLabel value="Idioma"/>
-                            <h:inputText value="#{articuloController.articulo.idioma}"/>                                             
+                            <h:inputText value="#{articuloController.articulo.idioma}"/>  
+                            <h:outputLabel value="Fecha Adquisicion"/>
+                            <p:calendar  value="#{articuloController.articulo.fechaadquisicion}" locale="es_ES" navigator="true" pattern="dd-MMM-yyyy"/>
                        
                             <h:outputLabel value="Categoria a Ingresar"/>
                             <p:selectOneMenu id="categoria" value="#{articuloController.tipo}" required="true" requiredMessage="Debe Seleccionar una categoria.">
@@ -66,7 +68,7 @@
                             <p:outputLabel value="Editorial" rendered="#{articuloController.tipo == 1}"/> 
                             <p:inputText  value="#{articuloController.libro.editorial}" rendered="#{articuloController.tipo == 1}"/>
                             <p:outputLabel value="Año" rendered="#{articuloController.tipo == 1}"/> 
-                            <p:calendar  value="#{articuloController.libro.ano}" rendered="#{articuloController.tipo == 1}" navigator="true" pattern="yyyy"/>
+                            <p:inputText value="#{articuloController.libro.ano}" rendered="#{articuloController.tipo == 1}"/>                           
                             <p:outputLabel value="Edicion" rendered="#{articuloController.tipo == 1}"/> 
                             <p:inputText value="#{articuloController.libro.edicion}"  rendered="#{articuloController.tipo == 1}"/>
                         </h:panelGrid>
@@ -79,6 +81,8 @@
                             <p:inputText  value="#{articuloController.revista.edicionrev}" rendered="#{articuloController.tipo == 2}"/>
                             <p:outputLabel value="Tipo de Revista" rendered="#{articuloController.tipo == 2}"/> 
                             <p:inputText  value="#{articuloController.revista.tiporev}" rendered="#{articuloController.tipo == 2}"/>
+                            <h:outputLabel value="Fecha Publicacion" rendered="#{articuloController.tipo == 2}"/>
+                            <p:calendar  value="#{articuloController.revista.fecpublicacion}" locale="es_ES" navigator="true" pattern="dd-MMM-yyyy" rendered="#{articuloController.tipo == 2}"/>
                         </h:panelGrid> 
                         
                         <!-- Categoria Cd -->
@@ -92,35 +96,45 @@
                         <!-- Categoria DVD -->
                         <h:panelGrid columns="2" id="dvd">
                             <p:outputLabel value="Duracion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{articuloController.tipo == 4}"/> 
-                            <p:calendar value="#{articuloController.dvd.duracion}" pattern="HH:mm"  timeOnly="true" rendered="#{articuloController.tipo == 4}"/>
+                            <p:inputMask  value="#{articuloController.dvd.duracion}"  mask="99:99:99" rendered="#{articuloController.tipo == 4}" />
+                            <p:outputLabel value="Tipo Informacion" rendered="#{articuloController.tipo == 4}"/> 
+                            <p:inputText  value="#{articuloController.dvd.tipoinfo}" rendered="#{articuloController.tipo == 4}"/>
                         </h:panelGrid> 
                         
                         <!-- Categoria Tesis -->
                         <h:panelGrid columns="2" id="tesis">
                             <p:outputLabel value="Fecha de Elaboracion" rendered="#{articuloController.tipo == 5}"/> 
                             <p:calendar value="#{articuloController.tesis.fechaelaboracion}" locale="es" navigator="true" pattern="dd-MMM-yyyy"  rendered="#{articuloController.tipo == 5}"/>
-                            <p:outputLabel value="Area" rendered="#{articuloController.tipo == 5}"/> 
-                            <p:inputText  value="#{articuloController.tesis.area}" rendered="#{articuloController.tipo == 5}"/>
+                            <p:outputLabel value="Carrera" rendered="#{articuloController.tipo == 5}"/> 
+                            <p:inputText  value="#{articuloController.tesis.carrera}" rendered="#{articuloController.tipo == 5}"/>
+                            <p:outputLabel value="Universidad" rendered="#{articuloController.tipo == 5}"/> 
+                            <p:inputText  value="#{articuloController.tesis.universidad}" rendered="#{articuloController.tipo == 5}"/>
+                            <p:outputLabel value="Numero de Paginas" rendered="#{articuloController.tipo == 5}"/> 
+                            <p:inputText  value="#{articuloController.tesis.numpaginas}" rendered="#{articuloController.tipo == 5}"/>
                         </h:panelGrid> 
                         
                         <!-- Categoria Periodicos -->
                         <h:panelGrid columns="2" id="periodicos">
                             <p:outputLabel value="Fecha de Publicacion" rendered="#{articuloController.tipo == 6}"/> 
-                            <p:calendar value="#{articuloController.periodicos.fechapublicacion}" locale="de" navigator="true" pattern="dd-MMM-yyyy"  rendered="#{articuloController.tipo == 6}"/>
+                            <p:calendar value="#{articuloController.periodicos.fechapublicacion}" locale="es_ES" navigator="true" pattern="dd-MMM-yyyy"  rendered="#{articuloController.tipo == 6}"/>
+                            <p:outputLabel value="Pais" rendered="#{articuloController.tipo == 6}"/> 
+                            <p:inputText  value="#{articuloController.periodicos.paispublicacion}" rendered="#{articuloController.tipo == 6}"/>
                         </h:panelGrid> 
                         
                         <!-- Categoria Obras -->
                         <h:panelGrid columns="2" id="obras">
                             <p:outputLabel value="Fecha de Creacion" rendered="#{articuloController.tipo == 7}"/> 
-                            <p:calendar value="#{articuloController.obras.fechacreacion}" locale="de" navigator="true" pattern="dd-MMM-yyyy"  rendered="#{articuloController.tipo == 7}"/>
-                            <p:outputLabel value="Region" rendered="#{articuloController.tipo == 7}"/> 
-                            <p:inputText  value="#{articuloController.obras.region}" rendered="#{articuloController.tipo == 7}"/>
+                            <p:calendar value="#{articuloController.obras.fechacreacion}" locale="es_ES" navigator="true" pattern="dd-MMM-yyyy"  rendered="#{articuloController.tipo == 7}"/>
+                            <p:outputLabel value="Tipo de Obra" rendered="#{articuloController.tipo == 7}"/> 
+                            <p:inputText  value="#{articuloController.obras.tipoobra}" rendered="#{articuloController.tipo == 7}"/>
                         </h:panelGrid>
                         
                         <!-- Categoria Memorias -->
                         <h:panelGrid columns="2" id="memorias">                          
                             <p:outputLabel value="Personaje&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{articuloController.tipo == 8}"/> 
                             <p:inputText value="#{articuloController.memorias.personaje}"  rendered="#{articuloController.tipo == 8}"/>
+                            <p:outputLabel value="Fecha de Creacion" rendered="#{articuloController.tipo == 8}"/> 
+                            <p:calendar value="#{articuloController.obras.fechacreacion}" locale="es_ES" navigator="true" pattern="dd-MMM-yyyy"  rendered="#{articuloController.tipo == 8}"/>
                         </h:panelGrid>
                        
                         <p:commandButton value="Ingresar Articulo" actionListener="#{articuloController.insertarArt(actionEvent)}" update=":frmNuevoArt"/>                        
