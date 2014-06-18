@@ -51,10 +51,20 @@
                         </p:column>
                         <p:column style="width:8%; text-align:center">  
                             <p:commandButton  icon="ui-icon-pencil" title="Editar"/>
-                            <p:commandButton  icon="ui-icon-closethick" title="Eliminar"/>
+                            <p:commandButton  actionListener="#{elimacionController.buscarLib(libro.codigo)}" oncomplete="confEliminar.show()" icon="ui-icon-closethick" title="Eliminar"/>
                         </p:column>            
                     </p:dataTable>
-                </h:form>           
+                </h:form>
+                
+                <!--Eliminar Libro-->
+                <h:form id="frmEliminar">  
+                    <p:growl id="growlEli" showDetail="true" sticky="true" />           
+                    <p:confirmDialog id="eliminar" message="¿Esta seguro de Eliminar Integrante?" header="Eliminar Integrante" severity="alert" widgetVar="confEliminar">  
+                        <p:commandButton value="Eliminar" update=":integrantes" actionListener="#{elimacionController.eliminarLib(elimacionController.libro.codigo)}" oncomplete="confEliminar.hide()" icon="ui-icon-circle-check"/>
+                        <p:commandButton value="Cancelar" update=":integrantes" oncomplete="confEliminar.hide()" icon="ui-icon-circle-close"/>     
+                    </p:confirmDialog>  
+                </h:form>
+                
             </ui:define> 
         </ui:composition>
     </h:body>
