@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteDePrestamos" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="37319b4a-c8fb-4bdd-adbe-3b779855def9">
+	<property name="ireport.zoom" value="1.3310000000000037"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaInicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fechaFin" class="java.util.Date"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[SELECT
+     SOCIO_BIBLIOTECA."CARNETSOCIO" AS SOCIO_BIBLIOTECA_CARNETSOCIO,
+     SOCIO_BIBLIOTECA."PRIMERNOMBRE" || ' ' ||
+     SOCIO_BIBLIOTECA."SEGUNDONOMBRE" || ' ' ||
+     SOCIO_BIBLIOTECA."PRIMERAPELLIDO" || ' ' ||
+     SOCIO_BIBLIOTECA."SEGUNDOAPELLIDO" AS SOCIO_BIBLIOTECA_NOMBRE,
+     PRESTAMO."IDPRESTAMO" AS PRESTAMO_IDPRESTAMO,
+     PRESTAMO."FECHAPRESTAMO" AS PRESTAMO_FECHAPRESTAMO,
+     PRESTAMO."FECHADEVOLUCION" AS PRESTAMO_FECHADEVOLUCION,
+     ARTICULO."TITULO" AS ARTICULO_TITULO,
+     PRESTAMO."ESTADOPRESTAMO" AS PRESTAMO_ESTADOPRESTAMO
+FROM
+     "BIBLIOTECA"."SOCIO_BIBLIOTECA" SOCIO_BIBLIOTECA INNER JOIN "BIBLIOTECA"."PRESTAMO" PRESTAMO ON SOCIO_BIBLIOTECA."CARNETSOCIO" = PRESTAMO."CARNETSOCIO"
+     INNER JOIN "BIBLIOTECA"."ARTICULO" ARTICULO ON PRESTAMO."CODIGO" = ARTICULO."CODIGO" AND
+PRESTAMO."FECHAPRESTAMO" BETWEEN to_date($P{fechaInicio}) and to_date($P{fechaFin})]]>
+	</queryString>
+	<field name="SOCIO_BIBLIOTECA_CARNETSOCIO" class="java.lang.String"/>
+	<field name="SOCIO_BIBLIOTECA_NOMBRE" class="java.lang.String"/>
+	<field name="PRESTAMO_IDPRESTAMO" class="java.math.BigDecimal"/>
+	<field name="PRESTAMO_FECHAPRESTAMO" class="java.sql.Timestamp"/>
+	<field name="PRESTAMO_FECHADEVOLUCION" class="java.sql.Timestamp"/>
+	<field name="ARTICULO_TITULO" class="java.lang.String"/>
+	<field name="PRESTAMO_ESTADOPRESTAMO" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="7" y="0" width="106" height="54" uuid="1e130132-7e81-4a4b-8eae-a4c74f10f9e6"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="220" y="0" width="271" height="28" uuid="dd1f9517-7c4b-47b6-bdf7-057d4d2d2356"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Sistema Bibliotecario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="28" width="328" height="20" uuid="85a48a50-4906-4195-b04a-5dab95f12069"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Prestamos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="59" width="44" height="20" uuid="3246eb53-8e35-471b-9274-70a35a798998"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Desde:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="59" width="41" height="20" uuid="2df78a3a-f8a6-4bf6-b746-317cd566e785"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Hasta:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="202" y="59" width="100" height="20" uuid="ba2179f5-557a-4eb9-9341-f77e49b65d24"/>
+				<textFieldExpression><![CDATA[$P{fechaInicio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="382" y="59" width="100" height="20" uuid="51c51ad5-bca0-4b3f-9e96-2cbb58fdaae6"/>
+				<textFieldExpression><![CDATA[$P{fechaFin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="3" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="187" y="0" width="51" height="20" backcolor="#99CCFF" uuid="8cfeb221-3054-45b0-a02d-6fb745b144ed"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ID Socio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="238" y="0" width="164" height="20" backcolor="#99CCFF" uuid="20546276-a650-47e2-92b5-4bed996577f8"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Socio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="7" y="0" width="57" height="20" backcolor="#99CCFF" uuid="7831ad12-4b1b-48be-92c9-96a38df3487a"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ID Prestamo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="64" y="0" width="123" height="20" backcolor="#99CCFF" uuid="3374e69a-6634-46ba-b224-93b2a1c1f777"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Articulo Prestado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="402" y="0" width="78" height="20" backcolor="#99CCFF" uuid="57d12da7-adc9-47aa-8e79-f5b816b7d67b"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Prestamo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="480" y="0" width="85" height="20" backcolor="#99CCFF" uuid="036ce748-0200-4026-b5aa-e470b16209b4"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Devolucion]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="187" y="3" width="51" height="20" uuid="806c2805-ec37-41e4-ba69-11f94de2f26f"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SOCIO_BIBLIOTECA_CARNETSOCIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="3" width="164" height="20" uuid="2f19ab08-cbb4-494b-9e7f-4b8c3c8fe1de"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SOCIO_BIBLIOTECA_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7" y="3" width="57" height="20" uuid="eadf9734-d77d-4f61-a6d6-0b4157e9f32c"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRESTAMO_IDPRESTAMO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="64" y="3" width="123" height="30" uuid="b701c5db-6b9b-4abd-a848-9d220973e258"/>
+				<textElement textAlignment="Justified">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ARTICULO_TITULO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="402" y="3" width="78" height="20" uuid="f5da9837-17a8-4a36-8dd8-770912b2769d"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRESTAMO_FECHAPRESTAMO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="480" y="3" width="85" height="20" uuid="f806e001-2714-4931-b4c0-e552a5dc18e2"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRESTAMO_FECHADEVOLUCION}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="7" y="33" width="558" height="1" uuid="21dea627-5fa1-4964-ac5d-7c8f274b7995"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="30" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="472" y="0" width="100" height="20" uuid="4837d496-ae2d-4c64-a8fa-a98793ab2eb5"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="2" splitType="Stretch"/>
+	</summary>
+</jasperReport>
