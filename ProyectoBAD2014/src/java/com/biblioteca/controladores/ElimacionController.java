@@ -41,10 +41,10 @@ public class ElimacionController {
     /*
     * Funciones de Busqueda
     */       
-    
-    public void buscarLib(String cod){
+    //No utilizadas por el momento
+   /* public void buscarLib(String cod){
         libro = busquedaEliminacion.buscarLib(cod);
-    }
+    }*/
     
     
     /*
