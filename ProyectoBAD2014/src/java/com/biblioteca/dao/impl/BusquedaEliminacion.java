@@ -28,12 +28,12 @@ public class BusquedaEliminacion {
     * Funciones de busqueda en cada categoria
     *
     */
-    
-    public Libro buscarLib(String cod){
+    //No utilizadas por el momento
+    /*public Libro buscarLib(String cod){
         Query q = em.createNamedQuery("Libro.findByCodigo");
         q.setParameter("codigo", cod);
         return (Libro) q.getSingleResult();       
-    }
+    }*/
     
     
     /*
@@ -42,7 +42,7 @@ public class BusquedaEliminacion {
     */
     
     public void eliminarLib(String cod){
-        StoredProcedureQuery spq = em.createNamedStoredProcedureQuery("DELETEARTICULO");
+        StoredProcedureQuery spq = em.createStoredProcedureQuery("DELETEARTICULO");
         spq.registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
         spq.setParameter(1, cod);
         spq.execute();
