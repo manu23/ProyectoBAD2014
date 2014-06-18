@@ -18,6 +18,7 @@
             </ui:define>
             <ui:define name="contenido_ui">  
                 <h:form id="articulos">
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
                     <p:dataTable var="libro" value="#{articuloController.libros}" emptyMessage="No hay libros disponibles"
                                  paginator="true" rows="10" paginatorPosition="bottom"
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -56,14 +57,14 @@
                     </p:dataTable>
                 </h:form>
                 
-                <!--Eliminar Libro-->
+                <!--Eliminar Libro
                 <h:form id="frmEliminar">  
                     <p:growl id="growlEli" showDetail="true" sticky="true" />           
                     <p:confirmDialog id="eliminar" message="¿Esta seguro de Eliminar Libro?" header="Eliminar Libro" severity="alert" widgetVar="confEliminar">  
                         <p:commandButton value="Eliminar" update=":articulos" action="#{elimacionController.eliminarLib(elimacionController.libro.codigo)}" oncomplete="confEliminar.hide()" icon="ui-icon-circle-check"/>
                         <p:commandButton value="Cancelar" update=":articulos" oncomplete="confEliminar.hide()" icon="ui-icon-circle-close"/>     
                     </p:confirmDialog>  
-                </h:form>
+                </h:form>-->
                 
             </ui:define> 
         </ui:composition>
