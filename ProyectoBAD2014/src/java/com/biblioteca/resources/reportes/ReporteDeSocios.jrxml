@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteDeSocios" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3e92221a-0527-456f-888b-a30327f51ff7">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="447"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="fechaIni" class="java.util.Date"/>
+	<parameter name="fechaFin" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT
+     SOCIO_BIBLIOTECA."CARNETSOCIO" AS SOCIO_BIBLIOTECA_CARNETSOCIO,
+     SOCIO_BIBLIOTECA."PRIMERAPELLIDO" || ' '||
+     SOCIO_BIBLIOTECA."SEGUNDOAPELLIDO" || ', '||
+     SOCIO_BIBLIOTECA."PRIMERNOMBRE" ||' '||
+     SOCIO_BIBLIOTECA."SEGUNDONOMBRE" AS SOCIO_BIBLIOTECA_NOMBRE,
+     SOCIO_BIBLIOTECA."DIRECCION" AS SOCIO_BIBLIOTECA_DIRECCION,
+     SOCIO_BIBLIOTECA."TELEFONO" AS SOCIO_BIBLIOTECA_TELEFONO,
+     SOCIO_BIBLIOTECA."DUI" AS SOCIO_BIBLIOTECA_DUI,
+     SOCIO_BIBLIOTECA."FECINGRESO" AS SOCIO_BIBLIOTECA_FECINGRESO,
+     SOCIO_BIBLIOTECA."EMAIL" AS SOCIO_BIBLIOTECA_EMAIL
+FROM
+     "BIBLIOTECA"."SOCIO_BIBLIOTECA" SOCIO_BIBLIOTECA
+WHERE SOCIO_BIBLIOTECA."FECINGRESO" BETWEEN to_date($P{fechaIni}) and to_date($P{fechaFin})
+ORDER BY SOCIO_BIBLIOTECA_NOMBRE,SOCIO_BIBLIOTECA_FECINGRESO]]>
+	</queryString>
+	<field name="SOCIO_BIBLIOTECA_CARNETSOCIO" class="java.lang.String"/>
+	<field name="SOCIO_BIBLIOTECA_NOMBRE" class="java.lang.String"/>
+	<field name="SOCIO_BIBLIOTECA_DIRECCION" class="java.lang.String"/>
+	<field name="SOCIO_BIBLIOTECA_TELEFONO" class="java.lang.String"/>
+	<field name="SOCIO_BIBLIOTECA_DUI" class="java.lang.String"/>
+	<field name="SOCIO_BIBLIOTECA_FECINGRESO" class="java.sql.Timestamp"/>
+	<field name="SOCIO_BIBLIOTECA_EMAIL" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="86" splitType="Stretch">
+			<image>
+				<reportElement x="38" y="6" width="120" height="65" uuid="3c2dea8b-b980-471d-9cd4-b3adc6a342fe"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="185" y="0" width="588" height="32" uuid="a5a1515d-6aac-4a5f-a4e6-2cc5a6c437af"/>
+				<textElement textAlignment="Center">
+					<font size="25" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Sistema Bibliotecario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="32" width="588" height="24" uuid="a375a9c4-98c8-45cb-9492-edfd2fc2302a"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Socios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="62" width="123" height="20" uuid="b75075b0-2bd4-4ebc-ba43-d1ebcfbe268b"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[Por fecha de Ingreso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="62" width="53" height="20" uuid="d3a46714-7155-43ff-b927-0cfe1bd46d15"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desde:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="532" y="62" width="53" height="20" uuid="5598f6ec-465e-4884-8b13-4322ba010c7b"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hasta:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="406" y="62" width="100" height="20" uuid="3f2f9f37-646a-4e38-b303-666f5fe1fdec"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaIni}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="585" y="62" width="100" height="20" uuid="d566f3fa-78b8-4d9f-aef3-3eb504ef85bd"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaFin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="2" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="1" width="60" height="20" backcolor="#99CCFF" uuid="0c945c69-dc6f-4d9d-a21b-88aad6865b06"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carnet]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="62" y="1" width="165" height="20" backcolor="#99CCFF" uuid="bbc9571d-348c-4b2d-9775-4bd1cef741c8"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Socio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="227" y="1" width="226" height="20" backcolor="#99CCFF" uuid="875463b3-6b81-4fb0-8063-c2bc41f55213"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="453" y="1" width="68" height="20" backcolor="#99CCFF" uuid="63a8efec-529e-4713-ac38-97b4d79b33ad"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Teléfono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="521" y="1" width="64" height="20" backcolor="#99CCFF" uuid="3e4cc488-1dee-40e6-a4a5-ef73d439ad56"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DUI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="585" y="1" width="84" height="20" backcolor="#99CCFF" uuid="226a9291-1150-41fc-94ce-59fc9504ed99"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Ingreso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="669" y="1" width="132" height="20" backcolor="#99CCFF" uuid="68a39820-1ac0-40b4-ab3d-7cc787da4de8"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="1" width="60" height="20" uuid="1e95c299-5218-4f3f-b1f1-ad7807f551f9"/>
+				<textFieldExpression><![CDATA[$F{SOCIO_BIBLIOTECA_CARNETSOCIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="1" width="155" height="20" uuid="df4a9bd9-d422-480a-ac1e-a4e9a2b5a0a0"/>
+				<textFieldExpression><![CDATA[$F{SOCIO_BIBLIOTECA_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="227" y="1" width="226" height="20" uuid="e6eb21ea-04f2-4e77-9721-39e912262b63"/>
+				<textFieldExpression><![CDATA[$F{SOCIO_BIBLIOTECA_DIRECCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="453" y="2" width="68" height="20" uuid="d10c6e43-8850-415b-9c05-80b83f127a17"/>
+				<textFieldExpression><![CDATA[$F{SOCIO_BIBLIOTECA_TELEFONO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="521" y="2" width="64" height="20" uuid="eb3645fd-64c4-4256-8528-ca62411b0605"/>
+				<textFieldExpression><![CDATA[$F{SOCIO_BIBLIOTECA_DUI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="585" y="2" width="84" height="20" uuid="902eda3c-8cfc-4027-9d60-f93ef962b03f"/>
+				<textFieldExpression><![CDATA[$F{SOCIO_BIBLIOTECA_FECINGRESO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="669" y="1" width="132" height="20" uuid="43f14d66-747e-4c40-85e1-f41e0ad24049"/>
+				<textFieldExpression><![CDATA[$F{SOCIO_BIBLIOTECA_EMAIL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="702" y="0" width="100" height="20" uuid="19f34559-9305-4858-9b80-0c12aa0a05d3"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="3" splitType="Stretch"/>
+	</summary>
+</jasperReport>

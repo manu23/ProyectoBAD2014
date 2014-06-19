@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/commonLayout.xhtml">
+            <ui:define name="title">
+                SISTEMA BIBLIOTECARIO
+            </ui:define>
+            <ui:define name="titulo">
+                <h:outputText value="Reporte de Prestamos" style="display: block; text-align: center"/>
+            </ui:define>
+            <ui:define name="contenido_ui">
+                <h:form>
+                    <p:outputLabel value="Segun fecha de Prestamos"/>
+                    <h:panelGrid columns="2">
+                    <p:outputLabel for="button" value="Desde:" />
+                    <p:calendar id="button1" navigator="true" pattern="dd/MM/yyyy" value="#{reportesController.fechaIni}"/>
+                    <p:outputLabel for="button" value="Hasta:" />
+                    <p:calendar id="button" navigator="true" pattern="dd/MM/yyyy" value="#{reportesController.fechaFin}"/>
+                    </h:panelGrid>
+                    <h:commandButton action="#{reportesController.prestamos()}" value="Generar Reporte">
+                    </h:commandButton>
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
