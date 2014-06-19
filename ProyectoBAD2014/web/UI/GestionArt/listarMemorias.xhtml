@@ -14,49 +14,43 @@
                 SISTEMA BIBLIOTECARIO
             </ui:define>
             <ui:define name="titulo">
-                <h:outputText value="Lista de Libros" style="display: block; text-align: center"/>
+                <h:outputText value="Lista de Memorias" style="display: block; text-align: center"/>
             </ui:define>
             <ui:define name="contenido_ui">                  
                 <h:form id="articulos">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
-                    <p:dataTable var="libro" value="#{articuloController.libros}" emptyMessage="No hay libros disponibles"
+                    <p:dataTable var="memorias" value="#{memoriasController.memoriass}" emptyMessage="No hay Memorias disponibles"
                                  paginator="true" rows="10" paginatorPosition="bottom"
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15">
                         <p:column headerText="Codigo">  
-                            <h:outputText value="#{libro.codigo}"/>  
+                            <h:outputText value="#{memorias.codigo}"/>  
                         </p:column>
-                        <p:column headerText="Autor" filterBy="#{libro.autor}">  
-                            <h:outputText value="#{libro.autor}"/>  
+                        <p:column headerText="Autor" filterBy="#{memorias.autor}">  
+                            <h:outputText value="#{memorias.autor}"/>  
                         </p:column>
-                        <p:column headerText="Titulo"  filterBy="#{libro.titulo}">  
-                            <h:outputText value="#{libro.titulo}"/>  
+                        <p:column headerText="Titulo"  filterBy="#{memorias.titulo}">  
+                            <h:outputText value="#{memorias.titulo}"/>  
                         </p:column>                         
-                        <p:column headerText="Idioma" filterBy="#{libro.idioma}">  
-                            <h:outputText value="#{libro.idioma}"/>  
+                        <p:column headerText="Idioma" filterBy="#{memorias.idioma}">  
+                            <h:outputText value="#{memorias.idioma}"/>  
                         </p:column>
-                        <p:column headerText="ISBN" filterBy="#{libro.codigoisbn}">  
-                            <h:outputText value="#{libro.codigoisbn}"/>  
-                        </p:column>
-                        <p:column headerText="Año" filterBy="#{libro.ano}">  
-                            <h:outputText value="#{libro.ano}"/>  
-                        </p:column>
-                        <p:column headerText="Editorial" filterBy="#{libro.editorial}">  
-                            <h:outputText value="#{libro.editorial}"/>  
-                        </p:column>
-                        <p:column headerText="Edicion" filterBy="#{libro.edicion}">  
-                            <h:outputText value="#{libro.edicion}"/>  
+                        <p:column headerText="Personaje" filterBy="#{memorias.personaje}">  
+                            <h:outputText value="#{memorias.personaje}"/>  
+                        </p:column>                       
+                        <p:column headerText="Fecha de Creacion" filterBy="#{memorias.fecreacion}">  
+                            <h:outputText value="#{memorias.fecreacion}"/>  
                         </p:column>
                         <p:column headerText="Precio">  
-                            <h:outputText value="#{libro.precio}"/>  
+                            <h:outputText value="#{memorias.precio}"/>  
                         </p:column>
                         <p:column headerText="Estado">  
-                            <h:outputText value="Prestado" rendered="#{libro.estado == 1}"/> 
-                            <h:outputText value="Disponible" rendered="#{libro.estado == 0}"/> 
+                            <h:outputText value="Prestado" rendered="#{memorias.estado == 1}"/> 
+                            <h:outputText value="Disponible" rendered="#{memorias.estado == 0}"/> 
                         </p:column>
                         <p:column style="width:8%; text-align:center">  
                             <p:commandButton  icon="ui-icon-pencil" title="Editar"/>
-                            <p:commandButton  update=":articulos" action="#{libroController.eliminarLib(libro.codigo)}"  icon="ui-icon-closethick" title="Eliminar"/>
+                            <p:commandButton  update=":articulos" action="#{memoriasController.eliminarMemorias(memorias.codigo)}"  icon="ui-icon-closethick" title="Eliminar"/>
                         </p:column>            
                     </p:dataTable>
                 </h:form>

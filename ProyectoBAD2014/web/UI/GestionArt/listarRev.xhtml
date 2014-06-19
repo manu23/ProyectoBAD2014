@@ -18,7 +18,8 @@
             </ui:define>
             <ui:define name="contenido_ui">  
                 <h:form id="articulos">
-                    <p:dataTable var="revista" value="#{articuloController.revistas}" emptyMessage="No hay revistas disponibles"
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    <p:dataTable var="revista" value="#{revistaController.revistas}" emptyMessage="No hay revistas disponibles"
                                  paginator="true" rows="10" paginatorPosition="bottom"
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15">
@@ -30,10 +31,7 @@
                         </p:column>
                         <p:column headerText="Titulo"  filterBy="#{revista.titulo}">  
                             <h:outputText value="#{revista.titulo}"/>  
-                        </p:column> 
-                        <p:column headerText="Precio">  
-                            <h:outputText value="#{revista.precio}"/>  
-                        </p:column> 
+                        </p:column>                        
                         <p:column headerText="Idioma" filterBy="#{revista.idioma}">  
                             <h:outputText value="#{revista.idioma}"/>  
                         </p:column>
@@ -51,9 +49,16 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy"/>
                             </h:outputText>  
                         </p:column>
+                        <p:column headerText="Precio">  
+                            <h:outputText value="#{revista.precio}"/>  
+                        </p:column> 
+                        <p:column headerText="Estado">  
+                            <h:outputText value="Prestado" rendered="#{revista.estado == 1}"/> 
+                            <h:outputText value="Disponible" rendered="#{revista.estado == 0}"/> 
+                        </p:column>
                         <p:column style="width:8%; text-align:center">  
                             <p:commandButton  icon="ui-icon-pencil" title="Editar"/>
-                            <p:commandButton  icon="ui-icon-closethick" title="Eliminar"/>
+                            <p:commandButton  update=":articulos" action="#{revistaController.eliminarRev(revista.codigo)}" icon="ui-icon-closethick" title="Eliminar"/>
                         </p:column>            
                     </p:dataTable>
                 </h:form>           

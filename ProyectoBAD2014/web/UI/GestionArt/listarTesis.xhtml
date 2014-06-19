@@ -14,49 +14,49 @@
                 SISTEMA BIBLIOTECARIO
             </ui:define>
             <ui:define name="titulo">
-                <h:outputText value="Lista de Libros" style="display: block; text-align: center"/>
+                <h:outputText value="Lista de Tesis" style="display: block; text-align: center"/>
             </ui:define>
             <ui:define name="contenido_ui">                  
                 <h:form id="articulos">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
-                    <p:dataTable var="libro" value="#{articuloController.libros}" emptyMessage="No hay libros disponibles"
+                    <p:dataTable var="tesis" value="#{tesisController.tesiss}" emptyMessage="No hay Tesis disponibles"
                                  paginator="true" rows="10" paginatorPosition="bottom"
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15">
                         <p:column headerText="Codigo">  
-                            <h:outputText value="#{libro.codigo}"/>  
+                            <h:outputText value="#{tesis.codigo}"/>  
                         </p:column>
-                        <p:column headerText="Autor" filterBy="#{libro.autor}">  
-                            <h:outputText value="#{libro.autor}"/>  
+                        <p:column headerText="Autor" filterBy="#{tesis.autor}">  
+                            <h:outputText value="#{tesis.autor}"/>  
                         </p:column>
-                        <p:column headerText="Titulo"  filterBy="#{libro.titulo}">  
-                            <h:outputText value="#{libro.titulo}"/>  
+                        <p:column headerText="Titulo"  filterBy="#{tesis.titulo}">  
+                            <h:outputText value="#{tesis.titulo}"/>  
                         </p:column>                         
-                        <p:column headerText="Idioma" filterBy="#{libro.idioma}">  
-                            <h:outputText value="#{libro.idioma}"/>  
+                        <p:column headerText="Idioma" filterBy="#{tesis.idioma}">  
+                            <h:outputText value="#{tesis.idioma}"/>  
                         </p:column>
-                        <p:column headerText="ISBN" filterBy="#{libro.codigoisbn}">  
-                            <h:outputText value="#{libro.codigoisbn}"/>  
+                        <p:column headerText="Fecha de Elaboracion" filterBy="#{tesis.fechaelaboracion}">  
+                            <h:outputText value="#{tesis.fechaselaboracion}"/>  
+                        </p:column>                       
+                        <p:column headerText="Carrera" filterBy="#{tesis.carrera}">  
+                            <h:outputText value="#{tesis.carrera}"/>  
                         </p:column>
-                        <p:column headerText="Año" filterBy="#{libro.ano}">  
-                            <h:outputText value="#{libro.ano}"/>  
+                        <p:column headerText="Universidad" filterBy="#{tesis.universidad}">  
+                            <h:outputText value="#{tesis.universidad}"/>  
                         </p:column>
-                        <p:column headerText="Editorial" filterBy="#{libro.editorial}">  
-                            <h:outputText value="#{libro.editorial}"/>  
-                        </p:column>
-                        <p:column headerText="Edicion" filterBy="#{libro.edicion}">  
-                            <h:outputText value="#{libro.edicion}"/>  
+                        <p:column headerText="Numero de Pag." filterBy="#{tesis.numpaginas}">  
+                            <h:outputText value="#{tesis.numpaginas}"/>  
                         </p:column>
                         <p:column headerText="Precio">  
-                            <h:outputText value="#{libro.precio}"/>  
+                            <h:outputText value="#{tesis.precio}"/>  
                         </p:column>
                         <p:column headerText="Estado">  
-                            <h:outputText value="Prestado" rendered="#{libro.estado == 1}"/> 
-                            <h:outputText value="Disponible" rendered="#{libro.estado == 0}"/> 
+                            <h:outputText value="Prestado" rendered="#{tesis.estado == 1}"/> 
+                            <h:outputText value="Disponible" rendered="#{tesis.estado == 0}"/> 
                         </p:column>
                         <p:column style="width:8%; text-align:center">  
                             <p:commandButton  icon="ui-icon-pencil" title="Editar"/>
-                            <p:commandButton  update=":articulos" action="#{libroController.eliminarLib(libro.codigo)}"  icon="ui-icon-closethick" title="Eliminar"/>
+                            <p:commandButton  update=":articulos" action="#{tesisController.eliminarTesis(tesis.codigo)}"  icon="ui-icon-closethick" title="Eliminar"/>
                         </p:column>            
                     </p:dataTable>
                 </h:form>
