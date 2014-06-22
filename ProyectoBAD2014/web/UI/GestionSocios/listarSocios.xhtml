@@ -14,46 +14,45 @@
                 SISTEMA BIBLIOTECARIO
             </ui:define>
             <ui:define name="titulo">
-                <h:outputText value="Lista de Periodicos" style="display: block; text-align: center"/>
+                <h:outputText value="Lista Socios" style="display: block; text-align: center"/>
             </ui:define>
             <ui:define name="contenido_ui">                  
                 <h:form id="articulos">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
-                    <p:dataTable var="periodicos" value="#{periodicosController.periodicoss}" emptyMessage="No hay Periodicos disponibles"
+                    <p:dataTable var="socio" value="#{socioController.socios}" emptyMessage="No hay Socios disponibles"
                                  paginator="true" rows="10" paginatorPosition="bottom"
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15">
-                        <p:column headerText="Codigo">  
-                            <h:outputText value="#{periodicos.codigo}"/>  
+                        <p:column headerText="Carnet Socio" filterBy="#{socio.carnetsocio}">  
+                            <h:outputText value="#{socio.carnetsocio}"/>  
                         </p:column>
-                        <p:column headerText="Autor" filterBy="#{periodicos.autor}">  
-                            <h:outputText value="#{periodicos.autor}"/>  
+                        <p:column headerText="Nombres">  
+                            <h:outputText value="#{socio.primernombre} #{socio.segundonombre}"/>  
                         </p:column>
-                        <p:column headerText="Titulo"  filterBy="#{periodicos.titulo}">  
-                            <h:outputText value="#{periodicos.titulo}"/>  
+                        <p:column headerText="Apellidos">  
+                            <h:outputText value="#{socio.primerapellido} #{socio.segundoapellido}"/>  
                         </p:column>                         
-                        <p:column headerText="Idioma" filterBy="#{periodicos.idioma}">  
-                            <h:outputText value="#{periodicos.idioma}"/>  
+                        <p:column headerText="Direccion" >  
+                            <h:outputText value="#{socio.direccion}"/>  
                         </p:column>
-                        <p:column headerText="Fecha Publicacion" filterBy="#{periodicos.fechapublicacion}">  
-                            <h:outputText value="#{periodicos.fechapublicacion}">
+                        <p:column headerText="Telefono">  
+                            <h:outputText value="#{socio.telefono}"/>  
+                        </p:column>
+                        <p:column headerText="DUI" filterBy="#{socio.dui}">  
+                            <h:outputText value="#{socio.dui}"/>  
+                        </p:column>
+                        <p:column headerText="Fecha de Ingreso" filterBy="#{socio.fecingreso}">  
+                            <h:outputText value="#{socio.fecingreso}">
                                 <f:convertDateTime pattern="MM/dd/yyyy"/>
                             </h:outputText>  
-                        </p:column>                      
-                        <p:column headerText="Pais de Publicacion" filterBy="#{periodicos.paispublicacion}">  
-                            <h:outputText value="#{periodicos.paispublicacion}"/>  
                         </p:column>
-                        <p:column headerText="Precio">  
-                            <h:outputText value="#{periodicos.precio}"/>  
-                        </p:column>
-                        <p:column headerText="Estado">  
-                            <h:outputText value="Prestado" rendered="#{periodicos.estado == 1}"/> 
-                            <h:outputText value="Disponible" rendered="#{periodicos.estado == 0}"/> 
-                        </p:column>
+                        <p:column headerText="Email" filterBy="#{socio.email}">  
+                            <h:outputText value="#{socio.email}"/>  
+                        </p:column> 
                         <p:column style="width:8%; text-align:center">  
                             <p:commandButton  icon="ui-icon-pencil" title="Editar"/>
-                            <p:commandButton  update=":articulos" action="#{periodicosController.eliminarPeriodicos(periodicos.codigo)}"  icon="ui-icon-closethick" title="Eliminar"/>
-                        </p:column>            
+                            <p:commandButton  update=":articulos" action="#{libroController.eliminarLib(libro.codigo)}"  icon="ui-icon-closethick" title="Eliminar"/>
+                        </p:column> 
                     </p:dataTable>
                 </h:form>
                 

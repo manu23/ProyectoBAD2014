@@ -7,6 +7,7 @@ import com.biblioteca.entidades.Estudiante;
 import com.biblioteca.entidades.Externo;
 import com.biblioteca.entidades.SocioBiblioteca;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
@@ -148,4 +149,8 @@ public class SocioDao {
        
        spq.execute();
    }
+    
+   public List<SocioBiblioteca> buscarTodos() {
+        return em.createNamedQuery("SocioBiblioteca.findAll").getResultList();
+    } 
 }

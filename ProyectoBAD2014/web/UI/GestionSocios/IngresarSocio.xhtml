@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/commonLayout.xhtml">
+            <ui:define name="title">
+                SISTEMA BIBLIOTECARIO
+            </ui:define>
+            <ui:define name="titulo">
+                <h:outputText value="Ingresar Socio" style="display: block; text-align: center"/>
+            </ui:define>
+            <ui:define name="contenido_ui">                    
+                <h:form id="frmNuevoArt" style="margin-left: 5%; margin-top: 2%">
+                        <p:growl id="growl" showDetail="true" sticky="true"/>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="CarnetSocio"/>
+                            <h:inputText value="#{socioController.socioBiblioteca.carnetsocio}"/>
+                            <h:outputLabel value="Primer Nombre"/>
+                            <h:inputText value="#{socioController.socioBiblioteca.primernombre}"/>
+                            <h:outputLabel value="Segundo Nombre"/>
+                            <h:inputText value="#{socioController.socioBiblioteca.segundonombre}"/>
+                            <h:outputLabel value="Primer Apellido"/>
+                            <h:inputText value="#{socioController.socioBiblioteca.primerapellido}"/>
+                            <h:outputLabel value="Segundo Apellido"/>
+                            <h:inputText value="#{socioController.socioBiblioteca.segundoapellido}"/>
+                            <h:outputLabel value="Direccion"/>
+                            <h:inputTextarea rows="6" cols="14" value="#{socioController.socioBiblioteca.direccion}"/>
+                            <p:outputLabel value="Telefono" />
+                            <p:inputMask value="#{socioController.socioBiblioteca.telefono}" mask="9999-9999"/>
+                            <p:outputLabel value="Dui" />
+                            <p:inputMask value="#{socioController.socioBiblioteca.dui}" mask="99999999-9"/>                                                       
+                            <h:outputLabel value="Fecha de Ingreso"/>
+                            <p:calendar  value="#{socioController.socioBiblioteca.fecingreso}" locale="es_ES" navigator="true" pattern="dd-MMM-yyyy"/>
+                            <h:outputLabel value="Email"/>
+                            <h:inputText value="#{socioController.socioBiblioteca.email}"/>
+                            </h:panelGrid>
+                           <!--
+                            <h:outputLabel value="Tipo de socio a Ingresar"/>
+                            <p:selectOneMenu id="categoria" value="#{socioController.tipo}" required="true" requiredMessage="Debe Seleccionar una categoria.">
+                                <f:selectItem itemLabel=" " itemValue="0" />
+                                <f:selectItem itemLabel="Docente" itemValue="1" />
+                                <f:ajax render="docente" />
+                                <f:selectItem itemLabel="Estudiante" itemValue="2" />
+                                <f:ajax render="estudiante" />
+                                <f:selectItem itemLabel="Externo" itemValue="3" /> 
+                                <f:ajax render="externo" />                                
+                            </p:selectOneMenu>                           
+                        
+                        
+                       
+                        <h:panelGrid columns="2" id="docente">
+                            <p:outputLabel value="Carnet Docente &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{socioController.tipo == 1}"/> 
+                            <p:inputText  value="#{socioController.carnetDocente}" rendered="#{socioController.tipo == 1}"/>
+                            <p:outputLabel value="Institucion &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{socioController.tipo == 1}"/> 
+                            <p:inputText  value="#{socioController.docente.institucion}" rendered="#{socioController.tipo == 1}"/>
+                            <p:outputLabel value="Escuela" rendered="#{socioController.tipo == 1}"/> 
+                            <p:inputText  value="#{socioController.docente.escuela}" rendered="#{socioController.tipo == 1}"/>                           
+                        </h:panelGrid>
+                        
+                        
+                        <h:panelGrid columns="2" id="estudiante">
+                            <p:outputLabel value="Carnet Estudiante&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{socioController.tipo == 2}"/> 
+                            <p:inputText  value="#{socioController.carnetEstudiante}" rendered="#{socioController.tipo == 2}"/>
+                            <p:outputLabel value="Facultad" rendered="#{socioController.tipo == 2}"/> 
+                            <p:inputText  value="#{socioController.estudiante.facultad}" rendered="#{socioController.tipo == 2}"/>
+                            <p:outputLabel value="Carrera" rendered="#{socioController.tipo == 2}"/> 
+                            <p:inputText  value="#{socioController.estudiante.carrera}" rendered="#{socioController.tipo == 2}"/>                           
+                        </h:panelGrid> 
+                        
+                     
+                        <h:panelGrid columns="2" id="externo">
+                            <p:outputLabel value="NIT de Pistas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{socioController.tipo == 3}"/> 
+                            <p:inputMask  value="#{socioController.externo.nit}"  mask="9999-999999-999-9" rendered="#{socioController.tipo == 3}"/>
+                            <p:outputLabel value="Carnet Minoridad" rendered="#{socioController.tipo == 3}"/> 
+                            <p:inputText  value="#{articuloController.cd.genero}" rendered="#{socioController.tipo == 3}"/>
+                        </h:panelGrid> -->
+                                                                     
+                        <p:commandButton value="Ingresar Socio" actionListener="#{socioController.insertarSocio(actionEvent)}" update=":frmNuevoArt"/>                        
+                         
+                    </h:form>                     
+            </ui:define> 
+        </ui:composition>
+    </h:body>
+</html>
+
