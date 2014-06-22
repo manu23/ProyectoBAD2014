@@ -34,4 +34,5 @@ public interface ArticuloDAO {
     public List<Periodicos> buscarTodosPer();
     public List<Obras> buscarTodosObras();
     public List<Memorias> buscarTodosMem();
+    public void eliminarArt(String cod);
 }

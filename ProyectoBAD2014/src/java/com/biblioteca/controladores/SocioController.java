@@ -200,10 +200,10 @@ public class SocioController {
         return socios;
     }
     
-     /*
+    /*
     * Funcion de Eliminar
     */
-    public void eliminarLib(String cod){
+    public void eliminarSocio(String cod){
         socioDao.eliminarSocio(cod);
         FacesContext context = FacesContext.getCurrentInstance();           
         context.addMessage(null, new FacesMessage("¡Socio eliminado con exito!")); 

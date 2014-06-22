@@ -338,4 +338,13 @@ public class ArticuloController {
         
     }
     
+    /*
+    * Funcion de Eliminar
+    */
+    public void eliminarArt(String cod){
+        articuloDAO.eliminarArt(cod);
+        FacesContext context = FacesContext.getCurrentInstance();           
+        context.addMessage(null, new FacesMessage("¡Articulo eliminado con exito!")); 
+    }
+    
 }

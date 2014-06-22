@@ -327,6 +327,15 @@ public class ArticuloDAOImpl implements ArticuloDAO{
         
         spq.execute();
     }
+    
+    @Override
+    public void eliminarArt(String cod){
+        StoredProcedureQuery spq = em.createStoredProcedureQuery("DELETEARTICULO");
+        spq.registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
+        spq.setParameter(1, cod);
+        spq.execute();
+    }
+    
 
 
     /*

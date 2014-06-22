@@ -39,7 +39,7 @@
                         </p:column>
                         <p:column style="width:8%; text-align:center">  
                             <p:commandButton  icon="ui-icon-pencil" title="Editar"/>
-                            <p:commandButton  icon="ui-icon-closethick" title="Eliminar"/>
+                            <p:commandButton  update=":articulos" action="#{articuloController.eliminarArt(articulo.codigo)}"  icon="ui-icon-closethick" title="Eliminar"/>
                         </p:column>            
                     </p:dataTable>
                 </h:form>           
