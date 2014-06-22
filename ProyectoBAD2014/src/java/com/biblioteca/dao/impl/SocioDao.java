@@ -152,5 +152,15 @@ public class SocioDao {
     
    public List<SocioBiblioteca> buscarTodos() {
         return em.createNamedQuery("SocioBiblioteca.findAll").getResultList();
-    } 
+    }
+   
+   /*
+   * Elimina un socio de la Base de datos
+   */
+   public void eliminarSocio(String cod){
+        StoredProcedureQuery spq = em.createStoredProcedureQuery("DELETESOCIOBIB");
+        spq.registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
+        spq.setParameter(1, cod);
+        spq.execute();
+    }
 }
