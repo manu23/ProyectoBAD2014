@@ -19,7 +19,7 @@ public class Conexion {
     private Connection conn;
     private final String login="biblioteca";
     private final String password="biblioteca";
-    private String url="jdbc:oracle:thin:@localhost:1521:orcl";
+    private String url="jdbc:oracle:thin:@localhost:1521:xe";
     
     public Connection getConexion(){
     try{                
