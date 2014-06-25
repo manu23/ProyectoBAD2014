@@ -7,9 +7,10 @@
 package com.biblioteca.controladores;
 
 import com.biblioteca.dao.Conexion;
-import static com.lowagie.text.Annotation.URL;
+import com.biblioteca.dao.impl.TipoArticuloDataSource;
 import java.io.File;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +33,7 @@ public class ReportesController {
     
     private Date fechaIni;
     private Date fechaFin;
+    private Integer tipo=0;
 
     public Date getFechaIni() {
         return fechaIni;
@@ -48,6 +50,15 @@ public class ReportesController {
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
+
+    public Integer getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Integer tipo) {
+        this.tipo = tipo;
+    }
+    
     
 
     /**
@@ -122,6 +133,45 @@ public class ReportesController {
             }         
     }
     
+    public void tipoArticulos() throws SQLException{
+      try{
+          String logotipo="/com/biblioteca/resources/reportes/logoBiblioteca.jpg";
+          
+          Conexion conn = new Conexion();
+          TipoArticuloDataSource datasource = new TipoArticuloDataSource();
+
+          datasource = conn.consultarTipoArticulo(getTipo());
+
+          URL master = this.getClass().getResource( "/com/biblioteca/resources/reportes/ReporteDeArticulos.jasper" );
+
+            if(master==null){
+                System.out.println("No encuentro el archivo del reporte maestro...");
+                System.exit(2);
+            }
+            
+            JasperReport masterReport = null;
+            try{
+                masterReport=(JasperReport)JRLoader.loadObject(master);
+            }catch(JRException e){
+                System.out.println("Error cargando el reporte maestro: "+e.getMessage());
+                System.exit(3);
+            }
+            
+            Map parametro = new HashMap();
+            parametro.clear();
+            String title=getReportTitle(getTipo());
+            parametro.put("reportTitle",title);
+            parametro.put("logo", this.getClass().getResourceAsStream(logotipo));
+            
+            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,parametro,datasource); 
+            String nameReport="/Reporte de Articulos.pdf";
+            exportarToPDF(jasperPrint,nameReport);
+            }catch(Exception j){
+                System.out.println("Mensaje de Error: "+j.getMessage());
+            }         
+   
+    }
+    
     public void exportarToPDF(JasperPrint jasperPrint, String nameReport) throws JRException{
         
         String documentsPath =System.getProperty("user.home") + "\\"+"Documents";    
@@ -142,4 +192,32 @@ public class ReportesController {
                 ex.printStackTrace();
           }
     } 
+    
+    public String getReportTitle(int tipo){
+        String reportTitle="";
+        switch (tipo){
+            case 1: reportTitle="Todas las categorias";
+                    break;
+            case 2: reportTitle="Categoria: Libros";
+                    break;
+            case 3: reportTitle="Categoria: Revistas";
+                    break;
+            case 4: reportTitle="Categoria: CD";
+                    break;
+            case 5: reportTitle="Categoria: DVD";
+                    break;
+            case 6: reportTitle="Categoria: Tesis";
+                    break;
+            case 7: reportTitle="Categoria: Periodicos";
+                    break;
+            case 8: reportTitle="Categoria: Obras de Referencia";
+                    break;
+            case 9: reportTitle="Categoria: Memorias";
+                    break;
+            default: reportTitle="";
+                     break;
+    }
+               
+        return reportTitle;
+    }
 }

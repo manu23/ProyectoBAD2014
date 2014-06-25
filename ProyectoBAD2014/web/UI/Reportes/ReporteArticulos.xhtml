@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/commonLayout.xhtml">
+            <ui:define name="title">
+                SISTEMA BIBLIOTECARIO
+            </ui:define>
+            <ui:define name="titulo">
+                <h:outputText value="Reporte de Articulos" style="display: block; text-align: center"/>
+            </ui:define>
+            <ui:define name="contenido_ui">
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Categoria a Consultar"/>
+                        <p:selectOneMenu id="categoria" value="#{reportesController.tipo}" required="true" requiredMessage="Debe Seleccionar una categoria.">
+                                <f:selectItem itemLabel=" " itemValue="0" />                             
+                                <f:selectItem itemLabel="Todas las Categorias" itemValue="1" />
+                                <f:selectItem itemLabel="Libros" itemValue="2" />
+                                <f:selectItem itemLabel="Revistas" itemValue="3" />
+                                <f:selectItem itemLabel="CD" itemValue="4" /> 
+                                <f:selectItem itemLabel="DVD" itemValue="5" />
+                                <f:selectItem itemLabel="Tesis" itemValue="6" />
+                                <f:selectItem itemLabel="Periodicos" itemValue="7" />
+                                <f:selectItem itemLabel="Obras de Referencia" itemValue="8" />
+                                <f:selectItem itemLabel="Memorias" itemValue="9" />
+                                
+                            </p:selectOneMenu>
+                    </h:panelGrid>
+                    <h:commandButton action="#{reportesController.tipoArticulos()}" value="Generar Reporte">
+                    </h:commandButton>
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
