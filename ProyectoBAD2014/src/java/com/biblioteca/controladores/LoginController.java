@@ -8,6 +8,7 @@ package com.biblioteca.controladores;
 
 import com.biblioteca.dao.impl.LoginDaoImpl;
 import com.biblioteca.entidades.UsuarioSistema;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -25,6 +26,7 @@ public class LoginController {
     @EJB
     private LoginDaoImpl loginDaoImpl;
     private UsuarioSistema usuario;
+    private List<UsuarioSistema> usuarios;
     
     /**
      * Creates a new instance of LoginController
@@ -43,6 +45,12 @@ public class LoginController {
         this.usuario = usuario;
     }
 
+    public List<UsuarioSistema> getUsuarios() {
+        usuarios = loginDaoImpl.ListarUsuarios();
+        return usuarios;
+    }
+
+   
     
     
     public String loginAcceso(){
@@ -57,5 +65,13 @@ public class LoginController {
         }   
     }
     
+    /*
+    * Funcion de Eliminar
+    */
+    public void eliminarUsuario(String cod){
+        loginDaoImpl.eliminarUsuario(cod);
+        FacesContext context = FacesContext.getCurrentInstance();           
+        context.addMessage(null, new FacesMessage("¡Usuario eliminado con exito!")); 
+    }
     
 }

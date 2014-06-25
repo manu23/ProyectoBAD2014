@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/commonLayout.xhtml">
+            <ui:define name="title">
+                SISTEMA BIBLIOTECARIO
+            </ui:define>
+            <ui:define name="titulo">
+                <h:outputText value="Lista de Usuarios" style="display: block; text-align: center"/>
+            </ui:define>
+            <ui:define name="contenido_ui">                  
+                <h:form id="articulos">
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    <p:dataTable var="usuarios" value="#{loginController.usuarios}" emptyMessage="No hay Socios disponibles"
+                                 paginator="true" rows="10" paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <p:column headerText="Carnet Socio" filterBy="#{usuarios.carnetsocio}">  
+                            <h:outputText value="#{usuarios.carnetsocio.carnetsocio}"/>  
+                        </p:column>
+                        <p:column headerText="Id Usuario" filterBy="#{usuarios.idusuario}">  
+                            <h:outputText value="#{usuarios.idusuario}"/>  
+                        </p:column>                      
+                        <p:column style="width:8%; text-align:center">  
+                            
+                            <p:commandButton  update=":articulos" action="#{loginController.eliminarUsuario(usuarios.idusuario)}"  icon="ui-icon-closethick" title="Eliminar"/>
+                        </p:column> 
+                    </p:dataTable>
+                </h:form>
+                
+                <!--
+                <h:form id="frmEliminar">  
+                    <p:growl id="growlEli" showDetail="true" sticky="true" />           
+                    <p:confirmDialog id="eliminar" message="¿Esta seguro de Eliminar Libro?" header="Eliminar Libro" severity="alert" widgetVar="confEliminar">  
+                        <p:commandButton value="Eliminar" update=":articulos" action="#{elimacionController.eliminarLib(elimacionController.libro.codigo)}" oncomplete="confEliminar.hide()" icon="ui-icon-circle-check"/>
+                        <p:commandButton value="Cancelar" update=":articulos" oncomplete="confEliminar.hide()" icon="ui-icon-circle-close"/>     
+                    </p:confirmDialog>  
+                </h:form>-->
+                
+            </ui:define> 
+        </ui:composition>
+    </h:body>
+</html>
+
+

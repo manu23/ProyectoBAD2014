@@ -7,10 +7,13 @@
 package com.biblioteca.dao.impl;
 
 import com.biblioteca.entidades.UsuarioSistema;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 
 /**
  *
@@ -34,5 +37,18 @@ public class LoginDaoImpl {
             return false;
         }        
     
+    public  List<UsuarioSistema> ListarUsuarios(){
+        return em.createNamedQuery("UsuarioSistema.findAll").getResultList();
+    }
+    
+    /*
+   * Elimina un socio de la Base de datos
+   */
+   public void eliminarUsuario(String cod){
+        StoredProcedureQuery spq = em.createStoredProcedureQuery("DELETEUSSIST");
+        spq.registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
+        spq.setParameter(1, cod);
+        spq.execute();
+    }
 }
 
